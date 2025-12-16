@@ -167,21 +167,6 @@
       .twocol{ grid-template-columns:1fr; }
     }
 
-    .quote{
-      margin-top:14px;
-      padding:14px;
-      border-radius:14px;
-      border:1px solid var(--border);
-      background:#fff;
-      font-weight:800;
-      color: var(--text);
-    }
-
-    .quote span{
-      color:var(--muted);
-      font-weight:700;
-    }
-
     /* PROJECTS */
     .projects{
       display:grid;
@@ -220,6 +205,20 @@
       margin:0;
       color:var(--muted);
       font-weight:650;
+    }
+
+    .why{
+      margin: 0;
+      color: var(--muted);
+      font-weight: 650;
+      border-left: 3px solid rgba(37,99,235,.22);
+      padding-left: 12px;
+    }
+
+    .why i{
+      color: var(--text);
+      font-style: normal;
+      font-weight: 800;
     }
 
     .tags{
@@ -308,17 +307,14 @@
       <div class="twocol">
         <div>
           <p class="lead">
-            I like taking messy, real-world fund and market data and turning it into signals people can actually act on.
-            I care more about whether a dashboard gets used than whether it’s academically perfect.
+            I work with messy, real-world fund and market data and turn it into signals that people can actually use.
+            I’m most interested in building tools that clarify risk early, before it becomes a decision problem.
           </p>
-          <div class="quote">
-            “I like building tools that reduce ambiguity before it turns into risk.” <span>— me</span>
-          </div>
         </div>
         <div>
           <p class="lead">
-            My background is quantitative (math + operations research), and I’m most excited when a project sits at the
-            intersection of data engineering, portfolio intuition, and clean decision support.
+            My background is quantitative (math and operations research), and I’m drawn to work at the intersection of
+            data engineering, portfolio intuition, and practical decision support.
           </p>
         </div>
       </div>
@@ -340,34 +336,40 @@
         <div class="proj">
           <h3>
             <a href="https://josh-zeiontz.shinyapps.io/bondshinyclean/" target="_blank" rel="noreferrer">
-              Bond Portfolio Sensitivity Engine
+              Fixed Income Risk &amp; Sensitivity Analytics
             </a>
           </h3>
           <p>
-            Interactive fixed income analytics for pricing, duration/convexity, DV01-style sensitivity,
-            and scenario thinking. Built to be practical—not a textbook demo.
+            Fixed income analytics focused on pricing, interest rate sensitivity, and scenario-based risk analysis.
+            Designed to support portfolio-level risk assessment and decision-making.
+          </p>
+          <p class="why" style="margin-top:8px;">
+            <i>Why this exists:</i> To make interest rate risk and sensitivity profiles transparent and easy to evaluate across fixed income positions.
           </p>
           <div class="tags">
-            <span class="tag">R</span>
             <span class="tag">Fixed Income</span>
             <span class="tag">Risk</span>
+            <span class="tag">Interest Rates</span>
           </div>
         </div>
 
         <div class="proj">
           <h3>
             <a href="https://josh-zeiontz.shinyapps.io/PortfolioOptimizer/" target="_blank" rel="noreferrer">
-              Portfolio Optimization Dashboard
+              Portfolio Optimization &amp; Risk–Return Analysis
             </a>
           </h3>
           <p>
-            Efficient frontier visualization and risk/return exploration with interactive allocations.
-            Designed as a portfolio-intuition builder.
+            Portfolio optimization and efficient frontier analysis with interactive risk–return exploration.
+            Built to support allocation decisions and portfolio construction analysis.
+          </p>
+          <p class="why" style="margin-top:8px;">
+            <i>Why this exists:</i> To provide a clear framework for evaluating tradeoffs between risk, return, and diversification in portfolio construction.
           </p>
           <div class="tags">
-            <span class="tag">R Shiny</span>
             <span class="tag">Optimization</span>
-            <span class="tag">Analytics</span>
+            <span class="tag">Portfolio Construction</span>
+            <span class="tag">Risk–Return</span>
           </div>
         </div>
       </div>
@@ -378,24 +380,24 @@
       <h2>How to Reach Me</h2>
       <div class="contactGrid">
         <div class="contactItem">
+          <span class="mono">Résumé</span>
+          <a href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">
+            View résumé
+          </a>
+        </div>
+        <div class="contactItem">
           <span class="mono">Email</span>
           <a href="mailto:jez0504@gmail.com">jez0504@gmail.com</a>
         </div>
         <div class="contactItem">
-          <span class="mono">LinkedIn</span>
-          <a href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">
-            linkedin.com/in/josh-zeiontz
+          <span class="mono">GitHub</span>
+          <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noreferrer">
+            github.com/YOUR_USERNAME
           </a>
         </div>
         <div class="contactItem">
           <span class="mono">Phone</span>
           <a href="tel:+16099552958">609.955.2958</a>
-        </div>
-        <div class="contactItem">
-          <span class="mono">Résumé</span>
-          <a href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">
-            View résumé
-          </a>
         </div>
       </div>
     </section>
