@@ -207,20 +207,6 @@
       font-weight:650;
     }
 
-    .why{
-      margin: 0;
-      color: var(--muted);
-      font-weight: 650;
-      border-left: 3px solid rgba(37,99,235,.22);
-      padding-left: 12px;
-    }
-
-    .why i{
-      color: var(--text);
-      font-style: normal;
-      font-weight: 800;
-    }
-
     .tags{
       display:flex;
       flex-wrap:wrap;
@@ -235,37 +221,6 @@
       background:#fafafa;
       padding:6px 10px;
       border-radius:999px;
-    }
-
-    /* CONTACT */
-    .contactGrid{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-      margin-top:10px;
-    }
-
-    @media (max-width: 860px){
-      .contactGrid{ grid-template-columns:1fr; }
-    }
-
-    .contactItem{
-      border:1px solid var(--border);
-      border-radius:14px;
-      background:#fff;
-      padding:14px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      font-weight:800;
-      gap: 12px;
-    }
-
-    .mono{
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-      color:var(--muted);
-      font-size:.92rem;
-      white-space: nowrap;
     }
 
     footer{
@@ -292,10 +247,9 @@
       </p>
 
       <div class="cta">
-        <a class="btn primary" href="#projects">See Projects</a>
-        <a class="btn" href="#contact">Contact</a>
         <a class="btn" href="mailto:jez0504@gmail.com">Email</a>
         <a class="btn" href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="btn primary" href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">Résumé</a>
       </div>
 
       <div class="divider" aria-hidden="true"></div>
@@ -343,9 +297,6 @@
             Fixed income analytics focused on pricing, interest rate sensitivity, and scenario-based risk analysis.
             Designed to support portfolio-level risk assessment and decision-making.
           </p>
-          <p class="why" style="margin-top:8px;">
-            <i>Why this exists:</i> To make interest rate risk and sensitivity profiles transparent and easy to evaluate across fixed income positions.
-          </p>
           <div class="tags">
             <span class="tag">Fixed Income</span>
             <span class="tag">Risk</span>
@@ -363,41 +314,11 @@
             Portfolio optimization and efficient frontier analysis with interactive risk–return exploration.
             Built to support allocation decisions and portfolio construction analysis.
           </p>
-          <p class="why" style="margin-top:8px;">
-            <i>Why this exists:</i> To provide a clear framework for evaluating tradeoffs between risk, return, and diversification in portfolio construction.
-          </p>
           <div class="tags">
             <span class="tag">Optimization</span>
             <span class="tag">Portfolio Construction</span>
             <span class="tag">Risk–Return</span>
           </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="card">
-      <h2>How to Reach Me</h2>
-      <div class="contactGrid">
-        <div class="contactItem">
-          <span class="mono">Résumé</span>
-          <a href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">
-            View résumé
-          </a>
-        </div>
-        <div class="contactItem">
-          <span class="mono">Email</span>
-          <a href="mailto:jez0504@gmail.com">jez0504@gmail.com</a>
-        </div>
-        <div class="contactItem">
-          <span class="mono">GitHub</span>
-          <a href="https://github.com/YOUR_USERNAME" target="_blank" rel="noreferrer">
-            github.com/YOUR_USERNAME
-          </a>
-        </div>
-        <div class="contactItem">
-          <span class="mono">Phone</span>
-          <a href="tel:+16099552958">609.955.2958</a>
         </div>
       </div>
     </section>
