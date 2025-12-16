@@ -19,7 +19,7 @@
       --muted:#64748b;
       --border:#e5e7eb;
       --accent:#2563eb;
-      --accentSoft: rgba(37, 99, 235, .10);
+      --accentSoft: rgba(37, 99, 235, .12);
       --shadow: 0 16px 40px rgba(15, 23, 42, .06);
       --radius: 16px;
       --max: 980px;
@@ -45,117 +45,94 @@
     .container{
       max-width:var(--max);
       margin:0 auto;
-      padding:56px 20px 80px;
+      padding:64px 20px 80px;
     }
 
     /* HERO */
     header{
-      padding: 0 0 28px;
-      margin-bottom: 14px;
-    }
-
-    .kicker{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      font-weight:800;
-      color: var(--muted);
-      letter-spacing: .01em;
-      margin-bottom: 14px;
-    }
-
-    .kdot{
-      width:10px;
-      height:10px;
-      border-radius: 50%;
-      background: var(--accent);
-      box-shadow: 0 0 0 6px var(--accentSoft);
+      text-align: center;
+      padding-bottom: 36px;
     }
 
     .name{
-      margin: 0 0 6px;
-      font-size: clamp(2.8rem, 5.5vw, 3.6rem);
+      margin: 0 0 8px;
+      font-size: clamp(2.9rem, 6vw, 3.7rem);
       letter-spacing: -0.04em;
       line-height: 1.05;
     }
 
     .role{
-      margin: 0 0 14px;
+      margin: 0 0 18px;
       font-size: 1.15rem;
       font-weight: 700;
       color: var(--muted);
     }
 
     .accentLine{
-      width: 92px;
+      width: 110px;
       height: 6px;
       border-radius: 999px;
       background: linear-gradient(90deg, var(--accent), rgba(37,99,235,.25));
-      margin: 0 0 18px;
+      margin: 0 auto 22px;
     }
 
     .sub{
-      margin:0;
+      margin: 0 auto;
       max-width: 760px;
       color: var(--muted);
-      font-size: 1.06rem;
+      font-size: 1.08rem;
       font-weight: 600;
     }
 
     .cta{
-      margin-top: 18px;
+      margin-top: 26px;
       display:flex;
       flex-wrap:wrap;
-      gap: 10px;
+      gap: 12px;
       align-items:center;
+      justify-content: center;
     }
 
     .btn{
       display:inline-flex;
       align-items:center;
-      gap:10px;
-      padding: 10px 14px;
-      border-radius: 12px;
+      padding: 12px 18px;
+      border-radius: 14px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.92);
+      background: #fff;
       color: var(--text);
       font-weight: 800;
       cursor:pointer;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
+      transition: transform .12s ease, box-shadow .12s ease;
     }
 
     .btn:hover{
       text-decoration:none;
       transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(15, 23, 42, .08);
+      box-shadow: 0 10px 25px rgba(15,23,42,.08);
     }
 
     .btn.primary{
-      border-color: rgba(37,99,235,.22);
       background: var(--accentSoft);
       color: var(--accent);
-    }
-
-    .divider{
-      height: 1px;
-      background: var(--border);
-      margin: 26px 0 0;
+      border-color: rgba(37,99,235,.35);
     }
 
     /* SECTIONS */
     .card{
-      background: rgba(255,255,255,.94);
+      background: rgba(255,255,255,.95);
       border: 1px solid var(--border);
       border-radius: var(--radius);
-      padding: 26px;
-      margin-top: 18px;
+      padding: 28px;
+      margin-top: 22px;
       box-shadow: var(--shadow);
     }
 
     h2{
-      margin:0 0 14px;
-      font-size:1.22rem;
+      margin:0 0 16px;
+      font-size:1.25rem;
       letter-spacing:-0.01em;
+      text-align:left;
     }
 
     .lead{
@@ -164,25 +141,41 @@
       font-weight: 650;
     }
 
-    /* ABOUT: two columns with divider */
+    /* ABOUT */
+    #about{
+      text-align:center;
+    }
+
+    #about .lead{
+      max-width: 420px;
+      margin: 0 auto;
+    }
+
     .twocol{
       position: relative;
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap: 16px;
+      gap: 18px;
+      margin-top: 8px;
     }
 
-    .twocol > div:first-child{ padding-right: 16px; }
-    .twocol > div:last-child{ padding-left: 16px; }
+    .twocol > div:first-child{ padding-right: 18px; }
+    .twocol > div:last-child{ padding-left: 18px; }
 
     .twocol::before{
       content:"";
       position:absolute;
-      top:0;
-      bottom:0;
+      top:6px;
+      bottom:6px;
       left:50%;
-      width:1px;
-      background: var(--border);
+      width:3px;
+      border-radius:999px;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        var(--border),
+        transparent
+      );
     }
 
     @media (max-width: 860px){
@@ -190,16 +183,16 @@
         grid-template-columns:1fr;
       }
       .twocol::before{ display:none; }
-      .twocol > div:first-child{ padding-right: 0; }
-      .twocol > div:last-child{ padding-left: 0; }
+      .twocol > div{
+        padding:0;
+      }
     }
 
     /* PROJECTS */
     .projects{
       display:grid;
       grid-template-columns: 1fr 1fr;
-      gap:16px;
-      margin-top:10px;
+      gap:18px;
     }
 
     @media (max-width: 860px){
@@ -210,7 +203,7 @@
       border-radius:16px;
       border:1px solid var(--border);
       background:#fff;
-      padding:18px;
+      padding:20px;
       display:grid;
       gap:12px;
       transition: transform .12s ease, box-shadow .12s ease;
@@ -225,7 +218,6 @@
       margin:0;
       font-size:1.05rem;
       letter-spacing:-0.01em;
-      line-height: 1.25;
     }
 
     .proj p{
@@ -251,11 +243,10 @@
     }
 
     footer{
-      margin-top: 26px;
+      margin-top: 30px;
       color: var(--muted);
       font-weight:700;
       text-align:center;
-      padding-top:18px;
     }
   </style>
 </head>
@@ -265,12 +256,10 @@
 
     <!-- HERO -->
     <header>
-      <div class="kicker"><span class="kdot" aria-hidden="true"></span> Josh Zeiontz</div>
-
       <h1 class="name">Josh Zeiontz</h1>
       <p class="role">Cross-Asset Investment Risk Analyst · New York</p>
 
-      <div class="accentLine" aria-hidden="true"></div>
+      <div class="accentLine"></div>
 
       <p class="sub">
         I build practical risk analytics and decision-support tools for multi-asset portfolios.
@@ -281,8 +270,6 @@
         <a class="btn" href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">LinkedIn</a>
         <a class="btn primary" href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">Résumé</a>
       </div>
-
-      <div class="divider" aria-hidden="true"></div>
     </header>
 
     <!-- ABOUT -->
@@ -309,7 +296,7 @@
       <h2>Current Role</h2>
       <p class="lead">
         I’m currently a <b>Cross-Asset Investment Risk Analyst</b> at <b>Morgan Stanley</b> in <b>New York</b>, working on
-        liquidity monitoring, counterparty exposure, and derivatives leverage across large multi-asset fund portfolios.
+        liquidity monitoring, counterparty exposure, and derivatives leverage across multi-asset fund portfolios.
       </p>
     </section>
 
@@ -324,8 +311,8 @@
             </a>
           </h3>
           <p>
-            Fixed income analytics focused on pricing, interest rate sensitivity, and scenario-based risk analysis.
-            Designed to support portfolio-level risk assessment and decision-making.
+            Fixed income analytics focused on pricing, interest rate sensitivity, and scenario-based risk analysis,
+            designed to support portfolio-level risk assessment.
           </p>
           <div class="tags">
             <span class="tag">Fixed Income</span>
@@ -341,8 +328,8 @@
             </a>
           </h3>
           <p>
-            Portfolio optimization and efficient frontier analysis with interactive risk–return exploration.
-            Built to support allocation decisions and portfolio construction analysis.
+            Portfolio optimization and efficient frontier analysis to support allocation decisions
+            and portfolio construction analysis.
           </p>
           <div class="tags">
             <span class="tag">Optimization</span>
@@ -356,6 +343,7 @@
     <footer>
       © <span id="year"></span> Josh Zeiontz · joshzeiontz.com
     </footer>
+
   </div>
 
   <script>
