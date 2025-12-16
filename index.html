@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Josh Zeiontz</title>
 
-  <meta name="description" content="Josh Zeiontz — Cross-Asset Investment Risk Analyst. I build risk tooling that reduces ambiguity before it becomes risk." />
+  <meta name="description" content="Josh Zeiontz — Cross-Asset Investment Risk Analyst. Practical risk analytics and decision-support tooling for multi-asset portfolios." />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -72,11 +72,18 @@
       box-shadow: 0 0 0 6px var(--accentSoft);
     }
 
-    h1{
-      margin:0 0 14px;
-      font-size: clamp(2.3rem, 4.5vw, 3.2rem);
-      letter-spacing:-0.04em;
-      line-height:1.08;
+    .name{
+      margin: 0 0 6px;
+      font-size: clamp(2.8rem, 5.5vw, 3.6rem);
+      letter-spacing: -0.04em;
+      line-height: 1.05;
+    }
+
+    .role{
+      margin: 0 0 14px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--muted);
     }
 
     .accentLine{
@@ -91,12 +98,12 @@
       margin:0;
       max-width: 760px;
       color: var(--muted);
-      font-size: 1.08rem;
+      font-size: 1.06rem;
       font-weight: 600;
     }
 
     .cta{
-      margin-top: 20px;
+      margin-top: 18px;
       display:flex;
       flex-wrap:wrap;
       gap: 10px;
@@ -157,14 +164,34 @@
       font-weight: 650;
     }
 
+    /* ABOUT: two columns with divider */
     .twocol{
+      position: relative;
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 16px;
     }
 
+    .twocol > div:first-child{ padding-right: 16px; }
+    .twocol > div:last-child{ padding-left: 16px; }
+
+    .twocol::before{
+      content:"";
+      position:absolute;
+      top:0;
+      bottom:0;
+      left:50%;
+      width:1px;
+      background: var(--border);
+    }
+
     @media (max-width: 860px){
-      .twocol{ grid-template-columns:1fr; }
+      .twocol{
+        grid-template-columns:1fr;
+      }
+      .twocol::before{ display:none; }
+      .twocol > div:first-child{ padding-right: 0; }
+      .twocol > div:last-child{ padding-left: 0; }
     }
 
     /* PROJECTS */
@@ -239,8 +266,15 @@
     <!-- HERO -->
     <header>
       <div class="kicker"><span class="kdot" aria-hidden="true"></span> Josh Zeiontz</div>
-      <h1>Risk tooling that reduces ambiguity before it becomes risk.</h1>
+
+      <h1 class="name">Josh Zeiontz</h1>
+      <p class="role">Cross-Asset Investment Risk Analyst · New York</p>
+
       <div class="accentLine" aria-hidden="true"></div>
+
+      <p class="sub">
+        I build practical risk analytics and decision-support tools for multi-asset portfolios.
+      </p>
 
       <div class="cta">
         <a class="btn" href="mailto:jez0504@gmail.com">Email</a>
