@@ -1,166 +1,527 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Josh Zeiontz | Mo Risk Analyst Portfolio</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Josh Zeiontz | Cross-Asset Investment Risk</title>
+  <meta name="description" content="Josh Zeiontz — Cross-Asset Investment Risk Analyst. Liquidity, counterparty, leverage dashboards, and quantitative portfolio analytics." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel-2: rgba(255,255,255,.10);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --faint: rgba(255,255,255,.50);
+      --border: rgba(255,255,255,.14);
+      --shadow: 0 18px 50px rgba(0,0,0,.35);
+      --accent: #6aa7ff;
+      --accent2: #4fe3c1;
+      --ring: rgba(106,167,255,.35);
+      --radius: 18px;
+      --max: 1100px;
     }
-    body {
-      font-family: 'Inter', sans-serif;
+
+    /* Light mode */
+    [data-theme="light"]{
+      --bg: #f6f7fb;
+      --panel: rgba(10,20,40,.05);
+      --panel-2: rgba(10,20,40,.08);
+      --text: rgba(10,20,40,.92);
+      --muted: rgba(10,20,40,.70);
+      --faint: rgba(10,20,40,.55);
+      --border: rgba(10,20,40,.14);
+      --shadow: 0 18px 50px rgba(10,20,40,.10);
+      --accent: #2f6bff;
+      --accent2: #00b894;
+      --ring: rgba(47,107,255,.25);
+    }
+
+    *{ box-sizing: border-box; }
+    html, body{ height: 100%; }
+    body{
       margin: 0;
-      background: #f8f9fa;
-      color: #333;
-      line-height: 1.6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(1200px 600px at 18% 10%, rgba(106,167,255,.30), transparent 55%),
+                  radial-gradient(1000px 600px at 80% 15%, rgba(79,227,193,.22), transparent 55%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.55;
     }
-    header {
-      background: linear-gradient(to right, #2c3e50, #3498db);
-      color: white;
-      padding: 4rem 2rem;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
+
+    a{ color: inherit; text-decoration: none; }
+    a:hover{ text-decoration: underline; }
+    .container{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 70px; }
+
+    /* Top nav */
+    .nav{
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 14px; padding: 12px 14px;
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: calc(var(--radius) + 6px);
+      box-shadow: var(--shadow);
+      position: sticky; top: 14px; z-index: 10;
+      backdrop-filter: blur(10px);
     }
-    header h1 {
-      font-size: 3rem;
-      margin-bottom: 0.3rem;
+    .brand{
+      display: flex; align-items: center; gap: 10px;
+      font-weight: 700; letter-spacing: .2px;
     }
-    header p {
-      font-size: 1.3rem;
-      opacity: 0.9;
+    .dot{
+      width: 12px; height: 12px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      box-shadow: 0 0 0 6px rgba(106,167,255,.10);
     }
-    main {
-      max-width: 1100px;
-      margin: 3rem auto;
-      padding: 0 2rem;
+    .navlinks{
+      display: flex; align-items: center; gap: 16px;
+      color: var(--muted);
+      font-weight: 600;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
-    section {
-      margin-bottom: 4rem;
-      background: white;
-      padding: 2rem;
+    .navlinks a{ opacity: .95; }
+    .navlinks a:hover{ opacity: 1; }
+    .btn{
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 10px 12px;
       border-radius: 12px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+      background: var(--panel-2);
+      color: var(--text);
+      font-weight: 700;
+      cursor: pointer;
+      user-select: none;
     }
-    h2 {
-      border-left: 5px solid #3498db;
-      padding-left: 1rem;
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
+    .btn:focus{ outline: none; box-shadow: 0 0 0 4px var(--ring); }
+    .btn.primary{
+      border: 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: #06111f;
     }
-    .experience, .project {
-      margin-bottom: 2rem;
+
+    /* Hero */
+    .hero{ margin-top: 22px; padding: 34px 26px; }
+    .grid{
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
     }
-    .experience h3, .project h3 {
-      font-size: 1.3rem;
-      margin-bottom: 0.4rem;
-      color: #2c3e50;
+    @media (max-width: 900px){
+      .grid{ grid-template-columns: 1fr; }
+      .nav{ position: static; }
     }
-    ul {
-      padding-left: 1.5rem;
+
+    .card{
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
     }
-    ul li {
-      margin-bottom: 0.5rem;
+
+    .hero h1{
+      margin: 0 0 10px;
+      font-size: clamp(2rem, 4vw, 3rem);
+      letter-spacing: -0.02em;
     }
-    a {
-      color: #2980b9;
-      text-decoration: none;
+    .subtitle{
+      margin: 0 0 16px;
+      color: var(--muted);
+      font-size: 1.05rem;
     }
-    a:hover {
-      text-decoration: underline;
+    .pills{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+    .pill{
+      padding: 8px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.04);
+      color: var(--muted);
+      font-weight: 700;
+      font-size: .92rem;
     }
-    .contact a {
-      display: inline-block;
-      margin-bottom: 0.5rem;
+
+    .heroActions{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
+    .mutelink{
+      color: var(--muted);
+      font-weight: 700;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
     }
-    footer {
+
+    /* Profile side */
+    .profile{ padding: 22px; display: grid; gap: 14px; }
+    .avatar{
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background:
+        radial-gradient(400px 200px at 30% 15%, rgba(106,167,255,.30), transparent 55%),
+        radial-gradient(400px 200px at 70% 30%, rgba(79,227,193,.22), transparent 55%),
+        rgba(255,255,255,.03);
+      min-height: 190px;
+      display: grid;
+      place-items: center;
+      color: var(--faint);
+      font-weight: 700;
       text-align: center;
-      padding: 2rem;
-      background-color: #ecf0f1;
-      font-size: 0.95rem;
-      color: #555;
-      border-top: 1px solid #ccc;
+      padding: 18px;
     }
+    .kv{ display: grid; gap: 8px; }
+    .kvRow{
+      display: flex; justify-content: space-between; gap: 12px;
+      padding: 10px 12px; border-radius: 14px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-weight: 600;
+    }
+    .kvRow span:last-child{ color: var(--text); font-weight: 700; }
+
+    /* Sections */
+    section{ margin-top: 18px; padding: 22px; }
+    .sectionTitle{
+      display:flex; align-items:center; justify-content: space-between; gap: 12px;
+      margin-bottom: 12px;
+    }
+    h2{
+      margin: 0;
+      font-size: 1.35rem;
+      letter-spacing: -0.01em;
+    }
+    .hint{ color: var(--muted); font-weight: 600; font-size: .95rem; }
+
+    /* Timeline */
+    .timeline{ display: grid; gap: 12px; margin-top: 10px; }
+    .role{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .roleTop{
+      display:flex; flex-wrap:wrap; justify-content: space-between; gap: 10px;
+      margin-bottom: 8px;
+    }
+    .role h3{ margin:0; font-size: 1.05rem; }
+    .meta{ color: var(--muted); font-weight: 700; }
+    .role ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
+    .role li{ margin: 8px 0; }
+
+    /* Projects */
+    .cards{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
+    @media (max-width: 760px){ .cards{ grid-template-columns: 1fr; } }
+    .proj{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+      display: grid;
+      gap: 10px;
+      min-height: 150px;
+    }
+    .proj h3{ margin: 0; font-size: 1.05rem; }
+    .proj p{ margin: 0; color: var(--muted); }
+    .tagrow{ display:flex; flex-wrap:wrap; gap: 8px; }
+    .tag{
+      font-size: .85rem;
+      font-weight: 800;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 6px 8px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.02);
+    }
+
+    /* Skills */
+    .skillgrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
+    @media (max-width: 760px){ .skillgrid{ grid-template-columns: 1fr; } }
+    .skillbox{
+      padding: 14px;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.03);
+    }
+    .skillbox h3{ margin:0 0 8px; font-size: 1rem; }
+    .chips{ display:flex; flex-wrap:wrap; gap: 8px; }
+    .chip{
+      padding: 7px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,.02);
+      color: var(--muted);
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    /* Footer */
+    footer{
+      margin-top: 18px;
+      padding: 18px 8px;
+      color: var(--muted);
+      text-align: center;
+      font-weight: 600;
+    }
+
+    /* small helpers */
+    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>Josh Zeiontz</h1>
-    <p>Model Risk Analyst | Quantitative Finance | Data Science</p>
-  </header>
-  <main>
-    <section>
-      <h2>About Me</h2>
-      <p>Hi, I'm Josh Zeiontz — a Model Risk Analyst at MUFG with a strong foundation in quantitative finance, data science, and market modeling. I specialize in validating fixed income models, including interest rate swaps and Value at Risk, using Python, R, and Bloomberg. I’m also pursuing a master’s in Industrial Engineering at ASU, where I’m deepening my skills in analytics and optimization. Explore my portfolio to see projects in financial modeling, machine learning, and risk analysis.</p>
+  <div class="container">
+    <div class="nav">
+      <div class="brand">
+        <div class="dot" aria-hidden="true"></div>
+        <div>Josh Zeiontz</div>
+      </div>
+      <div class="navlinks">
+        <a href="#about">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
+        <button id="themeBtn" class="btn" type="button" title="Toggle theme">Theme</button>
+      </div>
+    </div>
+
+    <div class="grid hero">
+      <div class="card" style="padding: 26px;">
+        <h1>Cross-Asset Investment Risk Analyst</h1>
+        <p class="subtitle">
+          I build automated liquidity, counterparty, and leverage dashboards and deliver daily portfolio risk insights
+          across large multi-asset fund universes.
+        </p>
+
+        <div class="pills" aria-label="Focus areas">
+          <div class="pill">Liquidity Risk</div>
+          <div class="pill">Counterparty Exposure</div>
+          <div class="pill">Derivatives Leverage</div>
+          <div class="pill">Portfolio Analytics</div>
+        </div>
+
+        <div class="heroActions">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <!-- Replace with your latest resume link if you want -->
+          <a class="mutelink" href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">
+            Résumé
+          </a>
+          <a class="mutelink" href="mailto:jez0504@gmail.com">jez0504@gmail.com</a>
+        </div>
+      </div>
+
+      <div class="card profile">
+        <div class="avatar">
+          Add a headshot here<br/>
+          <span class="mono" style="font-size:.9rem; opacity:.85;">(replace this block with an &lt;img&gt;)</span>
+        </div>
+        <div class="kv">
+          <div class="kvRow"><span>Location</span><span>New York, NY</span></div>
+          <div class="kvRow"><span>Current</span><span>Morgan Stanley</span></div>
+          <div class="kvRow"><span>Tools</span><span>Python · SQL · Linux</span></div>
+          <div class="kvRow"><span>Background</span><span>Math (GPA 3.85)</span></div>
+        </div>
+      </div>
+    </div>
+
+    <section id="about" class="card">
+      <div class="sectionTitle">
+        <h2>About</h2>
+        <div class="hint">What I do, in plain English</div>
+      </div>
+      <p style="margin:0; color: var(--muted); font-weight: 600;">
+        I’m a cross-asset investment risk analyst focused on turning messy fund and market data into clear daily signals:
+        where liquidity is tightening, how counterparty exposure is evolving, and where leverage is building. I like shipping
+        dashboards that portfolio teams can actually use—fast, reproducible, and well-documented.
+      </p>
     </section>
 
-    <section>
-      <h2>Experience</h2>
-      <div class="experience">
-        <h3>Model Risk Analyst — MUFG (Jan 2025 - Present)</h3>
-        <ul>
-          <li>Validate market risk models (VaR, interest rate swaps, credit sensitivities, market data aggregation).</li>
-          <li>Automate data extraction and workflows using Bloomberg BQL, R, and Python.</li>
-          <li>Write model documentation for regulatory and internal review.</li>
-        </ul>
+    <section id="experience" class="card">
+      <div class="sectionTitle">
+        <h2>Experience</h2>
+        <div class="hint">Recent roles</div>
       </div>
-      <div class="experience">
-        <h3>Model Risk Summer Analyst — MUFG (June 2024 - Aug 2024)</h3>
-        <ul>
-          <li>Validated models for name screening and securities lending.</li>
-          <li>Developed challenger models in R and conducted sensitivity analysis.</li>
-          <li>Led 25 performance monitoring reports.</li>
-        </ul>
-      </div>
-      <div class="experience">
-        <h3>Academic Support Tutor — ASU (Jan 2024 - Dec 2024)</h3>
-        <ul>
-          <li>Helped students understand material in over 30 courses.</li>
-          <li>Adjusted communication styles to support diverse learners.</li>
-        </ul>
-      </div>
-      <div class="experience">
-        <h3>ERM Intern — Enterprise Bank & Trust (Aug 2023 - Dec 2023)</h3>
-        <ul>
-          <li>Assessed risk likelihood and impact across 7 departments.</li>
-          <li>Built risk reports using decision trees and risk matrices.</li>
-        </ul>
-      </div>
-      <div class="experience">
-        <h3>Retail Banking Intern — Enterprise Bank & Trust (May 2023 - Aug 2023)</h3>
-        <ul>
-          <li>Processed 1000+ transactions with 99.9% accuracy using Bankway and Salesforce.</li>
-        </ul>
+
+      <div class="timeline">
+        <div class="role">
+          <div class="roleTop">
+            <h3>Cross-Asset Investment Risk Analyst — Morgan Stanley</h3>
+            <div class="meta">New York, NY · Sept 2025 – Present</div>
+          </div>
+          <ul>
+            <li>Develop automated liquidity, counterparty, and leverage dashboards using <b>Python</b>, <b>SQL</b>, and <b>Linux</b>, integrating fund-level pipelines across <b>930+ mutual funds, ETFs, and money-market portfolios</b>.</li>
+            <li>Deliver daily portfolio risk, liquidity, and counterparty exposure insights to portfolio managers and senior leadership, supporting allocation, hedging, and funding decisions.</li>
+            <li>Collaborate with investment teams to align portfolio construction and liquidity management with market conditions and regulatory thresholds.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="roleTop">
+            <h3>Model Risk Analyst — MUFG</h3>
+            <div class="meta">Tempe, AZ · Jan 2025 – Aug 2025</div>
+          </div>
+          <ul>
+            <li>Validated market risk models (VaR, interest rate swaps, credit sensitivities, market data aggregation) via benchmarking, backtesting, and partnership with Market Risk.</li>
+            <li>Extracted and analyzed Bloomberg data using <b>BQL</b>; automated workflows in <b>R</b> and <b>Python</b> to improve reproducibility and efficiency.</li>
+            <li>Authored model documentation covering methodology, assumptions, results, and regulatory considerations for internal/external review.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="roleTop">
+            <h3>Model Risk Summer Analyst — MUFG</h3>
+            <div class="meta">Tempe, AZ · Jun 2024 – Aug 2024</div>
+          </div>
+          <ul>
+            <li>Supported periodic and scope validations for name screening, transaction, and securities lending models.</li>
+            <li>Built challenger models in R (e.g., <b>Levenshtein Distance</b>, <b>Soundex</b>, DCM forecasting) for backtesting, benchmarking, and sensitivity analysis.</li>
+            <li>Partnered with model owners to complete <b>25</b> performance monitoring reports with proper reporting and documentation.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="roleTop">
+            <h3>Academic Support Network Tutor — Arizona State University</h3>
+            <div class="meta">Tempe, AZ · Jan 2024 – Dec 2024</div>
+          </div>
+          <ul>
+            <li>Supported students across <b>30+</b> courses; tailored explanations to diverse learning styles with ~15 learners per shift.</li>
+          </ul>
+        </div>
+
+        <div class="role">
+          <div class="roleTop">
+            <h3>Enterprise Risk Management Intern — Enterprise Bank & Trust</h3>
+            <div class="meta">Phoenix, AZ · Aug 2023 – Dec 2023</div>
+          </div>
+          <ul>
+            <li>Evaluated risk likelihood/impact across <b>7</b> departments using decision trees and risk matrices.</li>
+            <li>Created Excel reports and presentations for management highlighting risk trends and mitigation strategies.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>Projects</h2>
-      <div class="project">
-        <h3><a href="https://josh-zeiontz.shinyapps.io/PortfolioOptimizer/" target="_blank">Portfolio Optimizer</a></h3>
-        <p>Built in R Shiny to analyze asset allocations, optimize risk-return tradeoffs, and simulate efficient frontiers.</p>
+    <section id="projects" class="card">
+      <div class="sectionTitle">
+        <h2>Projects</h2>
+        <div class="hint">Selected builds</div>
       </div>
-      <div class="project">
-        <h3><a href="https://josh-zeiontz.shinyapps.io/bondshinyclean/" target="_blank">Bond Sensitivity Calculator</a></h3>
-        <p>Interactive tool to assess DV01, IR01, and CS01 for fixed income instruments using user-defined bond parameters.</p>
+
+      <div class="cards">
+        <div class="proj">
+          <div>
+            <h3>
+              <a href="https://josh-zeiontz.shinyapps.io/bondshinyclean/" target="_blank" rel="noreferrer">
+                Bond Portfolio Sensitivity Engine
+              </a>
+            </h3>
+            <p>Pricing, duration, convexity, DV01 and discounted cash-flow methods for stress testing and risk-return analysis.</p>
+          </div>
+          <div class="tagrow">
+            <span class="tag">R</span>
+            <span class="tag">Fixed Income</span>
+            <span class="tag">Stress Testing</span>
+          </div>
+        </div>
+
+        <div class="proj">
+          <div>
+            <h3>
+              <a href="https://josh-zeiontz.shinyapps.io/PortfolioOptimizer/" target="_blank" rel="noreferrer">
+                Portfolio Optimization Dashboard
+              </a>
+            </h3>
+            <p>Efficient frontiers, max-Sharpe portfolios, and allocation/volatility visualization in an interactive UI.</p>
+          </div>
+          <div class="tagrow">
+            <span class="tag">R Shiny</span>
+            <span class="tag">Optimization</span>
+            <span class="tag">Performance Attribution</span>
+          </div>
+        </div>
       </div>
     </section>
 
-    <section>
-      <h2>Resume</h2>
-      <p><a href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank">View My Résumé (Google Docs)</a></p>
+    <section id="skills" class="card">
+      <div class="sectionTitle">
+        <h2>Skills</h2>
+        <div class="hint">Tools & knowledge</div>
+      </div>
+
+      <div class="skillgrid">
+        <div class="skillbox">
+          <h3>Tools</h3>
+          <div class="chips">
+            <span class="chip">Python</span>
+            <span class="chip">SQL</span>
+            <span class="chip">Linux</span>
+            <span class="chip">R</span>
+            <span class="chip">Excel</span>
+            <span class="chip">Bloomberg Terminal</span>
+            <span class="chip">Aladdin (BlackRock)</span>
+            <span class="chip">Archer IRM</span>
+          </div>
+        </div>
+
+        <div class="skillbox">
+          <h3>Knowledge</h3>
+          <div class="chips">
+            <span class="chip">Fixed Income Products</span>
+            <span class="chip">Model Validation</span>
+            <span class="chip">Probability</span>
+            <span class="chip">Stochastic Processes</span>
+            <span class="chip">Operations Research</span>
+            <span class="chip">Risk Measurement</span>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="contact">
-      <h2>Contact</h2>
-      <p>Email: <a href="mailto:jez0504@gmail.com">jez0504@gmail.com</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/josh-zeiontz" target="_blank">linkedin.com/in/josh-zeiontz</a></p>
+    <section id="contact" class="card">
+      <div class="sectionTitle">
+        <h2>Contact</h2>
+        <div class="hint">Let’s connect</div>
+      </div>
+
+      <div style="display:grid; gap:10px; color: var(--muted); font-weight:700;">
+        <div><span class="mono">Email</span>: <a href="mailto:jez0504@gmail.com">jez0504@gmail.com</a></div>
+        <div><span class="mono">Phone</span>: <a href="tel:+16099552958">609.955.2958</a></div>
+        <div><span class="mono">LinkedIn</span>: <a href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">linkedin.com/in/josh-zeiontz</a></div>
+        <div><span class="mono">Location</span>: New York, NY</div>
+      </div>
     </section>
-  </main>
-  <footer>
-    <p>© 2025 Josh Zeiontz</p>
-  </footer>
+
+    <footer>
+      © <span id="year"></span> Josh Zeiontz · Built with HTML/CSS · <span class="mono">joshzeiontz.com</span>
+    </footer>
+  </div>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Theme toggle (persists)
+    const root = document.documentElement;
+    const btn = document.getElementById('themeBtn');
+    const saved = localStorage.getItem('theme');
+    if (saved) root.setAttribute('data-theme', saved);
+
+    btn.addEventListener('click', () => {
+      const current = root.getAttribute('data-theme') || 'dark';
+      const next = current === 'light' ? 'dark' : 'light';
+      if (next === 'dark') root.removeAttribute('data-theme');
+      else root.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', next);
+    });
+  </script>
 </body>
 </html>
+
