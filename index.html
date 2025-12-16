@@ -4,277 +4,299 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Josh Zeiontz | Cross-Asset Investment Risk</title>
-  <meta name="description" content="Josh Zeiontz — Cross-Asset Investment Risk Analyst. Liquidity, counterparty, leverage dashboards, and quantitative portfolio analytics." />
+  <meta name="description" content="Josh Zeiontz — Cross-Asset Investment Risk Analyst focused on liquidity, counterparty exposure, leverage, and quantitative portfolio analytics." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    :root{
-      --bg: #0b1220;
-      --panel: rgba(255,255,255,.06);
-      --panel-2: rgba(255,255,255,.10);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.70);
-      --faint: rgba(255,255,255,.50);
-      --border: rgba(255,255,255,.14);
-      --shadow: 0 18px 50px rgba(0,0,0,.35);
-      --accent: #6aa7ff;
-      --accent2: #4fe3c1;
-      --ring: rgba(106,167,255,.35);
-      --radius: 18px;
+    :root {
+      --bg: #f7f8fa;
+      --card: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #2563eb;
+      --radius: 14px;
       --max: 1100px;
     }
 
-    /* Light mode */
-    [data-theme="light"]{
-      --bg: #f6f7fb;
-      --panel: rgba(10,20,40,.05);
-      --panel-2: rgba(10,20,40,.08);
-      --text: rgba(10,20,40,.92);
-      --muted: rgba(10,20,40,.70);
-      --faint: rgba(10,20,40,.55);
-      --border: rgba(10,20,40,.14);
-      --shadow: 0 18px 50px rgba(10,20,40,.10);
-      --accent: #2f6bff;
-      --accent2: #00b894;
-      --ring: rgba(47,107,255,.25);
-    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
 
-    *{ box-sizing: border-box; }
-    html, body{ height: 100%; }
-    body{
+    body {
       margin: 0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(1200px 600px at 18% 10%, rgba(106,167,255,.30), transparent 55%),
-                  radial-gradient(1000px 600px at 80% 15%, rgba(79,227,193,.22), transparent 55%),
-                  var(--bg);
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
       color: var(--text);
-      line-height: 1.55;
+      line-height: 1.6;
     }
 
-    a{ color: inherit; text-decoration: none; }
-    a:hover{ text-decoration: underline; }
-    .container{ max-width: var(--max); margin: 0 auto; padding: 28px 20px 70px; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .container {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
 
     /* Top nav */
-    .nav{
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 14px; padding: 12px 14px;
-      background: var(--panel);
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 14px;
+      background: var(--card);
       border: 1px solid var(--border);
-      border-radius: calc(var(--radius) + 6px);
-      box-shadow: var(--shadow);
-      position: sticky; top: 14px; z-index: 10;
-      backdrop-filter: blur(10px);
+      border-radius: calc(var(--radius) + 4px);
+      position: sticky;
+      top: 16px;
+      z-index: 10;
     }
-    .brand{
-      display: flex; align-items: center; gap: 10px;
-      font-weight: 700; letter-spacing: .2px;
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      color: var(--text);
     }
-    .dot{
-      width: 12px; height: 12px; border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 0 0 6px rgba(106,167,255,.10);
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
     }
-    .navlinks{
-      display: flex; align-items: center; gap: 16px;
-      color: var(--muted);
-      font-weight: 600;
+
+    .navlinks {
+      display: flex;
+      align-items: center;
+      gap: 14px;
       flex-wrap: wrap;
       justify-content: flex-end;
-    }
-    .navlinks a{ opacity: .95; }
-    .navlinks a:hover{ opacity: 1; }
-    .btn{
-      display: inline-flex; align-items: center; gap: 10px;
-      padding: 10px 12px;
-      border-radius: 12px;
-      border: 1px solid var(--border);
-      background: var(--panel-2);
-      color: var(--text);
-      font-weight: 700;
-      cursor: pointer;
-      user-select: none;
-    }
-    .btn:focus{ outline: none; box-shadow: 0 0 0 4px var(--ring); }
-    .btn.primary{
-      border: 0;
-      background: linear-gradient(135deg, var(--accent), var(--accent2));
-      color: #06111f;
+      font-weight: 600;
+      color: var(--muted);
     }
 
-    /* Hero */
-    .hero{ margin-top: 22px; padding: 34px 26px; }
-    .grid{
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-    @media (max-width: 900px){
-      .grid{ grid-template-columns: 1fr; }
-      .nav{ position: static; }
+    .navlinks a { color: var(--muted); }
+    .navlinks a:hover { color: var(--text); text-decoration: none; }
+
+    /* Header */
+    header {
+      margin-top: 34px;
+      margin-bottom: 40px;
     }
 
-    .card{
-      background: var(--panel);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
-    }
-
-    .hero h1{
+    header h1 {
+      font-size: clamp(2.2rem, 3.8vw, 3rem);
       margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3rem);
-      letter-spacing: -0.02em;
-    }
-    .subtitle{
-      margin: 0 0 16px;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-    .pills{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
-    .pill{
-      padding: 8px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.04);
-      color: var(--muted);
-      font-weight: 700;
-      font-size: .92rem;
+      letter-spacing: -0.03em;
     }
 
-    .heroActions{ display: flex; flex-wrap: wrap; gap: 10px; margin-top: 18px; }
-    .mutelink{
+    header p {
+      font-size: 1.05rem;
       color: var(--muted);
-      font-weight: 700;
+      max-width: 760px;
+      margin: 0;
+    }
+
+    .ctaRow {
+      margin-top: 18px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 10px;
       padding: 10px 12px;
       border-radius: 12px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
+      background: var(--card);
+      color: var(--text);
+      font-weight: 700;
     }
 
-    /* Profile side */
-    .profile{ padding: 22px; display: grid; gap: 14px; }
-    .avatar{
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background:
-        radial-gradient(400px 200px at 30% 15%, rgba(106,167,255,.30), transparent 55%),
-        radial-gradient(400px 200px at 70% 30%, rgba(79,227,193,.22), transparent 55%),
-        rgba(255,255,255,.03);
-      min-height: 190px;
-      display: grid;
-      place-items: center;
-      color: var(--faint);
-      font-weight: 700;
-      text-align: center;
-      padding: 18px;
+    .btn.primary {
+      border-color: rgba(37,99,235,.25);
+      background: rgba(37,99,235,.08);
+      color: var(--accent);
     }
-    .kv{ display: grid; gap: 8px; }
-    .kvRow{
-      display: flex; justify-content: space-between; gap: 12px;
-      padding: 10px 12px; border-radius: 14px;
+
+    /* Sections */
+    section {
+      background: var(--card);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 28px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
+    }
+
+    h2 {
+      font-size: 1.35rem;
+      margin: 0 0 18px;
+      padding-left: 12px;
+      border-left: 4px solid var(--accent);
+      letter-spacing: -0.01em;
+    }
+
+    /* About */
+    .aboutText {
+      margin: 0;
       color: var(--muted);
       font-weight: 600;
     }
-    .kvRow span:last-child{ color: var(--text); font-weight: 700; }
 
-    /* Sections */
-    section{ margin-top: 18px; padding: 22px; }
-    .sectionTitle{
-      display:flex; align-items:center; justify-content: space-between; gap: 12px;
-      margin-bottom: 12px;
+    /* Experience */
+    .experience {
+      padding: 16px 0;
+      border-top: 1px solid var(--border);
     }
-    h2{
+    .experience:first-of-type {
+      border-top: none;
+      padding-top: 0;
+    }
+
+    .roleTop {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+
+    .experience h3 {
       margin: 0;
-      font-size: 1.35rem;
+      font-size: 1.08rem;
       letter-spacing: -0.01em;
     }
-    .hint{ color: var(--muted); font-weight: 600; font-size: .95rem; }
 
-    /* Timeline */
-    .timeline{ display: grid; gap: 12px; margin-top: 10px; }
-    .role{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
+    .roleMeta {
+      color: var(--muted);
+      font-size: 0.95rem;
+      font-weight: 700;
+      white-space: nowrap;
     }
-    .roleTop{
-      display:flex; flex-wrap:wrap; justify-content: space-between; gap: 10px;
-      margin-bottom: 8px;
+
+    ul {
+      margin: 12px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
     }
-    .role h3{ margin:0; font-size: 1.05rem; }
-    .meta{ color: var(--muted); font-weight: 700; }
-    .role ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-    .role li{ margin: 8px 0; }
+
+    li { margin-bottom: 8px; }
 
     /* Projects */
-    .cards{ display:grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin-top: 10px; }
-    @media (max-width: 760px){ .cards{ grid-template-columns: 1fr; } }
-    .proj{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
+    .projectGrid {
       display: grid;
-      gap: 10px;
-      min-height: 150px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px;
     }
-    .proj h3{ margin: 0; font-size: 1.05rem; }
-    .proj p{ margin: 0; color: var(--muted); }
-    .tagrow{ display:flex; flex-wrap:wrap; gap: 8px; }
-    .tag{
-      font-size: .85rem;
+    @media (max-width: 780px) {
+      .projectGrid { grid-template-columns: 1fr; }
+    }
+
+    .project {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .project h3 {
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+    }
+
+    .project p {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 0.85rem;
       font-weight: 800;
       color: var(--muted);
       border: 1px solid var(--border);
-      padding: 6px 8px;
+      padding: 6px 10px;
       border-radius: 999px;
-      background: rgba(255,255,255,.02);
+      background: #fafafa;
     }
 
     /* Skills */
-    .skillgrid{ display:grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 10px; }
-    @media (max-width: 760px){ .skillgrid{ grid-template-columns: 1fr; } }
-    .skillbox{
-      padding: 14px;
-      border-radius: 16px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,.03);
+    .skillGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
     }
-    .skillbox h3{ margin:0 0 8px; font-size: 1rem; }
-    .chips{ display:flex; flex-wrap:wrap; gap: 8px; }
-    .chip{
-      padding: 7px 9px;
+    @media (max-width: 780px) {
+      .skillGrid { grid-template-columns: 1fr; }
+    }
+
+    .skillBox {
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      background: #fff;
+    }
+
+    .skillBox h3 {
+      margin: 0 0 10px;
+      font-size: 1rem;
+    }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .chip {
+      padding: 7px 10px;
       border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(255,255,255,.02);
+      background: #fafafa;
       color: var(--muted);
       font-weight: 800;
-      font-size: .9rem;
+      font-size: 0.9rem;
+    }
+
+    /* Contact */
+    .contactRow {
+      display: grid;
+      gap: 10px;
+      color: var(--muted);
+      font-weight: 700;
     }
 
     /* Footer */
-    footer{
-      margin-top: 18px;
-      padding: 18px 8px;
-      color: var(--muted);
+    footer {
       text-align: center;
-      font-weight: 600;
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 34px;
+      padding-top: 20px;
     }
 
-    /* small helpers */
-    .mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+    .mono {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
   </style>
 </head>
+
 <body>
   <div class="container">
     <div class="nav">
@@ -288,176 +310,144 @@
         <a href="#projects">Projects</a>
         <a href="#skills">Skills</a>
         <a href="#contact">Contact</a>
-        <button id="themeBtn" class="btn" type="button" title="Toggle theme">Theme</button>
       </div>
     </div>
 
-    <div class="grid hero">
-      <div class="card" style="padding: 26px;">
-        <h1>Cross-Asset Investment Risk Analyst</h1>
-        <p class="subtitle">
-          I build automated liquidity, counterparty, and leverage dashboards and deliver daily portfolio risk insights
-          across large multi-asset fund universes.
-        </p>
+    <header>
+      <h1>Cross-Asset Investment Risk Analyst</h1>
+      <p>
+        I build automated liquidity, counterparty, and leverage dashboards and deliver daily portfolio risk insights
+        across large multi-asset fund universes.
+      </p>
 
-        <div class="pills" aria-label="Focus areas">
-          <div class="pill">Liquidity Risk</div>
-          <div class="pill">Counterparty Exposure</div>
-          <div class="pill">Derivatives Leverage</div>
-          <div class="pill">Portfolio Analytics</div>
-        </div>
-
-        <div class="heroActions">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <!-- Replace with your latest resume link if you want -->
-          <a class="mutelink" href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">
-            Résumé
-          </a>
-          <a class="mutelink" href="mailto:jez0504@gmail.com">jez0504@gmail.com</a>
-        </div>
+      <div class="ctaRow">
+        <a class="btn primary" href="#projects">View Projects</a>
+        <a class="btn" href="mailto:jez0504@gmail.com">jez0504@gmail.com</a>
+        <a class="btn" href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">LinkedIn</a>
+        <!-- Replace with your preferred resume link -->
+        <a class="btn" href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">Résumé</a>
       </div>
+    </header>
 
-      <div class="card profile">
-        <div class="avatar">
-          Add a headshot here<br/>
-          <span class="mono" style="font-size:.9rem; opacity:.85;">(replace this block with an &lt;img&gt;)</span>
-        </div>
-        <div class="kv">
-          <div class="kvRow"><span>Location</span><span>New York, NY</span></div>
-          <div class="kvRow"><span>Current</span><span>Morgan Stanley</span></div>
-          <div class="kvRow"><span>Tools</span><span>Python · SQL · Linux</span></div>
-          <div class="kvRow"><span>Background</span><span>Math (GPA 3.85)</span></div>
-        </div>
-      </div>
-    </div>
-
-    <section id="about" class="card">
-      <div class="sectionTitle">
-        <h2>About</h2>
-        <div class="hint">What I do, in plain English</div>
-      </div>
-      <p style="margin:0; color: var(--muted); font-weight: 600;">
+    <section id="about">
+      <h2>About</h2>
+      <p class="aboutText">
         I’m a cross-asset investment risk analyst focused on turning messy fund and market data into clear daily signals:
         where liquidity is tightening, how counterparty exposure is evolving, and where leverage is building. I like shipping
         dashboards that portfolio teams can actually use—fast, reproducible, and well-documented.
       </p>
     </section>
 
-    <section id="experience" class="card">
-      <div class="sectionTitle">
-        <h2>Experience</h2>
-        <div class="hint">Recent roles</div>
+    <section id="experience">
+      <h2>Experience</h2>
+
+      <div class="experience">
+        <div class="roleTop">
+          <h3>Cross-Asset Investment Risk Analyst — Morgan Stanley</h3>
+          <div class="roleMeta">New York, NY · Sept 2025 – Present</div>
+        </div>
+        <ul>
+          <li>Develop automated liquidity, counterparty, and leverage dashboards using <b>Python</b>, <b>SQL</b>, and <b>Linux</b>, integrating fund-level pipelines across <b>930+ mutual funds, ETFs, and money-market portfolios</b>.</li>
+          <li>Deliver daily portfolio risk, liquidity, and counterparty exposure insights to portfolio managers and senior leadership.</li>
+          <li>Collaborate with investment teams to align portfolio construction and liquidity management with market conditions and regulatory thresholds.</li>
+        </ul>
       </div>
 
-      <div class="timeline">
-        <div class="role">
-          <div class="roleTop">
-            <h3>Cross-Asset Investment Risk Analyst — Morgan Stanley</h3>
-            <div class="meta">New York, NY · Sept 2025 – Present</div>
-          </div>
-          <ul>
-            <li>Develop automated liquidity, counterparty, and leverage dashboards using <b>Python</b>, <b>SQL</b>, and <b>Linux</b>, integrating fund-level pipelines across <b>930+ mutual funds, ETFs, and money-market portfolios</b>.</li>
-            <li>Deliver daily portfolio risk, liquidity, and counterparty exposure insights to portfolio managers and senior leadership, supporting allocation, hedging, and funding decisions.</li>
-            <li>Collaborate with investment teams to align portfolio construction and liquidity management with market conditions and regulatory thresholds.</li>
-          </ul>
+      <div class="experience">
+        <div class="roleTop">
+          <h3>Model Risk Analyst — MUFG</h3>
+          <div class="roleMeta">Tempe, AZ · Jan 2025 – Aug 2025</div>
         </div>
+        <ul>
+          <li>Validated market risk models (VaR, interest rate swaps, credit sensitivities, market data aggregation) via benchmarking and backtesting.</li>
+          <li>Extracted and analyzed Bloomberg data using <b>BQL</b>; automated workflows in <b>R</b> and <b>Python</b>.</li>
+          <li>Authored model documentation for internal and regulatory review.</li>
+        </ul>
+      </div>
 
-        <div class="role">
-          <div class="roleTop">
-            <h3>Model Risk Analyst — MUFG</h3>
-            <div class="meta">Tempe, AZ · Jan 2025 – Aug 2025</div>
-          </div>
-          <ul>
-            <li>Validated market risk models (VaR, interest rate swaps, credit sensitivities, market data aggregation) via benchmarking, backtesting, and partnership with Market Risk.</li>
-            <li>Extracted and analyzed Bloomberg data using <b>BQL</b>; automated workflows in <b>R</b> and <b>Python</b> to improve reproducibility and efficiency.</li>
-            <li>Authored model documentation covering methodology, assumptions, results, and regulatory considerations for internal/external review.</li>
-          </ul>
+      <div class="experience">
+        <div class="roleTop">
+          <h3>Model Risk Summer Analyst — MUFG</h3>
+          <div class="roleMeta">Tempe, AZ · Jun 2024 – Aug 2024</div>
         </div>
+        <ul>
+          <li>Supported validations for name screening, transaction, and securities lending models.</li>
+          <li>Built challenger models in R (Levenshtein Distance, Soundex, DCM forecasting) for benchmarking and sensitivity analysis.</li>
+          <li>Partnered with model owners to complete 25 performance monitoring reports.</li>
+        </ul>
+      </div>
 
-        <div class="role">
-          <div class="roleTop">
-            <h3>Model Risk Summer Analyst — MUFG</h3>
-            <div class="meta">Tempe, AZ · Jun 2024 – Aug 2024</div>
-          </div>
-          <ul>
-            <li>Supported periodic and scope validations for name screening, transaction, and securities lending models.</li>
-            <li>Built challenger models in R (e.g., <b>Levenshtein Distance</b>, <b>Soundex</b>, DCM forecasting) for backtesting, benchmarking, and sensitivity analysis.</li>
-            <li>Partnered with model owners to complete <b>25</b> performance monitoring reports with proper reporting and documentation.</li>
-          </ul>
+      <div class="experience">
+        <div class="roleTop">
+          <h3>Academic Support Network Tutor — Arizona State University</h3>
+          <div class="roleMeta">Tempe, AZ · Jan 2024 – Dec 2024</div>
         </div>
+        <ul>
+          <li>Supported students across 30+ courses; tailored explanations to diverse learning styles with ~15 learners per shift.</li>
+        </ul>
+      </div>
 
-        <div class="role">
-          <div class="roleTop">
-            <h3>Academic Support Network Tutor — Arizona State University</h3>
-            <div class="meta">Tempe, AZ · Jan 2024 – Dec 2024</div>
-          </div>
-          <ul>
-            <li>Supported students across <b>30+</b> courses; tailored explanations to diverse learning styles with ~15 learners per shift.</li>
-          </ul>
+      <div class="experience">
+        <div class="roleTop">
+          <h3>Enterprise Risk Management Intern — Enterprise Bank & Trust</h3>
+          <div class="roleMeta">Phoenix, AZ · Aug 2023 – Dec 2023</div>
         </div>
+        <ul>
+          <li>Evaluated risk likelihood/impact across 7 departments using decision trees and risk matrices.</li>
+          <li>Created Excel reports and presentations for management highlighting risk trends and mitigation strategies.</li>
+        </ul>
+      </div>
 
-        <div class="role">
-          <div class="roleTop">
-            <h3>Enterprise Risk Management Intern — Enterprise Bank & Trust</h3>
-            <div class="meta">Phoenix, AZ · Aug 2023 – Dec 2023</div>
-          </div>
-          <ul>
-            <li>Evaluated risk likelihood/impact across <b>7</b> departments using decision trees and risk matrices.</li>
-            <li>Created Excel reports and presentations for management highlighting risk trends and mitigation strategies.</li>
-          </ul>
+      <div class="experience">
+        <div class="roleTop">
+          <h3>Retail Banking Intern — Enterprise Bank & Trust</h3>
+          <div class="roleMeta">Phoenix, AZ · May 2023 – Aug 2023</div>
         </div>
+        <ul>
+          <li>Processed 1000+ transactions with 99.9% accuracy using Bankway and Salesforce.</li>
+        </ul>
       </div>
     </section>
 
-    <section id="projects" class="card">
-      <div class="sectionTitle">
-        <h2>Projects</h2>
-        <div class="hint">Selected builds</div>
-      </div>
+    <section id="projects">
+      <h2>Projects</h2>
 
-      <div class="cards">
-        <div class="proj">
-          <div>
-            <h3>
-              <a href="https://josh-zeiontz.shinyapps.io/bondshinyclean/" target="_blank" rel="noreferrer">
-                Bond Portfolio Sensitivity Engine
-              </a>
-            </h3>
-            <p>Pricing, duration, convexity, DV01 and discounted cash-flow methods for stress testing and risk-return analysis.</p>
-          </div>
-          <div class="tagrow">
+      <div class="projectGrid">
+        <div class="project">
+          <h3>
+            <a href="https://josh-zeiontz.shinyapps.io/bondshinyclean/" target="_blank" rel="noreferrer">
+              Bond Portfolio Sensitivity Engine
+            </a>
+          </h3>
+          <p>Interactive tool for bond analytics, duration/convexity, DV01, and scenario-style stress testing.</p>
+          <div class="tags">
             <span class="tag">R</span>
             <span class="tag">Fixed Income</span>
-            <span class="tag">Stress Testing</span>
+            <span class="tag">Risk</span>
           </div>
         </div>
 
-        <div class="proj">
-          <div>
-            <h3>
-              <a href="https://josh-zeiontz.shinyapps.io/PortfolioOptimizer/" target="_blank" rel="noreferrer">
-                Portfolio Optimization Dashboard
-              </a>
-            </h3>
-            <p>Efficient frontiers, max-Sharpe portfolios, and allocation/volatility visualization in an interactive UI.</p>
-          </div>
-          <div class="tagrow">
+        <div class="project">
+          <h3>
+            <a href="https://josh-zeiontz.shinyapps.io/PortfolioOptimizer/" target="_blank" rel="noreferrer">
+              Portfolio Optimization Dashboard
+            </a>
+          </h3>
+          <p>Efficient frontiers, max-Sharpe allocations, and risk/return visuals in an interactive Shiny UI.</p>
+          <div class="tags">
             <span class="tag">R Shiny</span>
             <span class="tag">Optimization</span>
-            <span class="tag">Performance Attribution</span>
+            <span class="tag">Analytics</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="skills" class="card">
-      <div class="sectionTitle">
-        <h2>Skills</h2>
-        <div class="hint">Tools & knowledge</div>
-      </div>
+    <section id="skills">
+      <h2>Skills</h2>
 
-      <div class="skillgrid">
-        <div class="skillbox">
+      <div class="skillGrid">
+        <div class="skillBox">
           <h3>Tools</h3>
           <div class="chips">
             <span class="chip">Python</span>
@@ -471,57 +461,48 @@
           </div>
         </div>
 
-        <div class="skillbox">
+        <div class="skillBox">
           <h3>Knowledge</h3>
           <div class="chips">
-            <span class="chip">Fixed Income Products</span>
+            <span class="chip">Liquidity Risk</span>
+            <span class="chip">Counterparty Exposure</span>
+            <span class="chip">Derivatives Leverage</span>
             <span class="chip">Model Validation</span>
-            <span class="chip">Probability</span>
-            <span class="chip">Stochastic Processes</span>
-            <span class="chip">Operations Research</span>
-            <span class="chip">Risk Measurement</span>
+            <span class="chip">Fixed Income</span>
+            <span class="chip">Optimization</span>
           </div>
         </div>
       </div>
     </section>
 
-    <section id="contact" class="card">
-      <div class="sectionTitle">
-        <h2>Contact</h2>
-        <div class="hint">Let’s connect</div>
-      </div>
-
-      <div style="display:grid; gap:10px; color: var(--muted); font-weight:700;">
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contactRow">
         <div><span class="mono">Email</span>: <a href="mailto:jez0504@gmail.com">jez0504@gmail.com</a></div>
         <div><span class="mono">Phone</span>: <a href="tel:+16099552958">609.955.2958</a></div>
         <div><span class="mono">LinkedIn</span>: <a href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">linkedin.com/in/josh-zeiontz</a></div>
-        <div><span class="mono">Location</span>: New York, NY</div>
+        <div><span class="mono">Website</span>: <span>joshzeiontz.com</span></div>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> Josh Zeiontz · Built with HTML/CSS · <span class="mono">joshzeiontz.com</span>
+      © <span id="year"></span> Josh Zeiontz · Built with HTML/CSS
     </footer>
   </div>
 
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Theme toggle (persists)
-    const root = document.documentElement;
-    const btn = document.getElementById('themeBtn');
-    const saved = localStorage.getItem('theme');
-    if (saved) root.setAttribute('data-theme', saved);
-
-    btn.addEventListener('click', () => {
-      const current = root.getAttribute('data-theme') || 'dark';
-      const next = current === 'light' ? 'dark' : 'light';
-      if (next === 'dark') root.removeAttribute('data-theme');
-      else root.setAttribute('data-theme', 'light');
-      localStorage.setItem('theme', next);
+    // Smooth scroll for nav links
+    document.querySelectorAll('.navlinks a').forEach(a => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || !href.startsWith('#')) return;
+        e.preventDefault();
+        const el = document.querySelector(href);
+        if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
     });
   </script>
 </body>
 </html>
-
