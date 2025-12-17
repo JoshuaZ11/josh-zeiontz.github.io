@@ -1,353 +1,302 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Josh Zeiontz</title>
-
-  <meta name="description" content="Josh Zeiontz — Cross-Asset Investment Risk Analyst. Practical risk analytics and decision-support tooling for multi-asset portfolios." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Josh Zeiontz — About</title>
+  <meta name="description" content="About Josh Zeiontz — Cross-Asset Investment Risk Analyst. Developer of portfolio analytics and risk dashboards." />
 
   <style>
     :root{
-      --bg:#f7f8fa;
-      --card:#ffffff;
-      --text:#0f172a;
-      --muted:#64748b;
-      --border:#e5e7eb;
-      --accent:#2563eb;
-      --accentSoft: rgba(37, 99, 235, .12);
-      --shadow: 0 16px 40px rgba(15, 23, 42, .06);
-      --radius: 16px;
+      --bg:#0b0c10;
+      --panel:#0f1117;
+      --text:#e9e9ee;
+      --muted:#a6a8b3;
+      --line:#232533;
+      --chip:#141726;
       --max: 980px;
+      --radius: 18px;
     }
 
     *{ box-sizing:border-box; }
-    html, body{ height:100%; }
-
+    html,body{ height:100%; }
     body{
       margin:0;
-      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      background: radial-gradient(1200px 800px at 20% 0%, #151833 0%, transparent 55%),
+                  radial-gradient(900px 700px at 80% 20%, #1a1030 0%, transparent 55%),
+                  var(--bg);
       color:var(--text);
-      background:
-        radial-gradient(900px 500px at 12% 5%, rgba(37,99,235,.12), transparent 60%),
-        radial-gradient(900px 500px at 90% 0%, rgba(2,6,23,.05), transparent 55%),
-        var(--bg);
-      line-height:1.65;
+      line-height:1.5;
     }
 
-    a{ color:var(--accent); text-decoration:none; }
+    a{ color:inherit; text-decoration:none; }
     a:hover{ text-decoration:underline; }
 
-    .container{
-      max-width:var(--max);
-      margin:0 auto;
-      padding:64px 20px 80px;
-    }
+    .wrap{ max-width: var(--max); margin: 0 auto; padding: 22px 18px 80px; }
 
-    /* HERO */
-    header{
-      text-align: center;
-      padding-bottom: 36px;
-    }
-
-    .name{
-      margin: 0 0 8px;
-      font-size: clamp(2.9rem, 6vw, 3.7rem);
-      letter-spacing: -0.04em;
-      line-height: 1.05;
-    }
-
-    .role{
-      margin: 0 0 18px;
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--muted);
-    }
-
-    .accentLine{
-      width: 110px;
-      height: 6px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, var(--accent), rgba(37,99,235,.25));
-      margin: 0 auto 22px;
-    }
-
-    .sub{
-      margin: 0 auto;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 1.08rem;
-      font-weight: 600;
-    }
-
-    .cta{
-      margin-top: 26px;
-      display:flex;
-      flex-wrap:wrap;
-      gap: 12px;
-      align-items:center;
-      justify-content: center;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      padding: 12px 18px;
-      border-radius: 14px;
-      border: 1px solid var(--border);
-      background: #fff;
-      color: var(--text);
-      font-weight: 800;
-      cursor:pointer;
-      transition: transform .12s ease, box-shadow .12s ease;
-    }
-
-    .btn:hover{
-      text-decoration:none;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 25px rgba(15,23,42,.08);
-    }
-
-    .btn.primary{
-      background: var(--accentSoft);
-      color: var(--accent);
-      border-color: rgba(37,99,235,.35);
-    }
-
-    /* SECTIONS */
-    .card{
-      background: rgba(255,255,255,.95);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 28px;
-      margin-top: 22px;
-      box-shadow: var(--shadow);
-    }
-
-    h2{
-      margin:0 0 16px;
-      font-size:1.25rem;
-      letter-spacing:-0.01em;
-      text-align:left;
-    }
-
-    .lead{
-      margin:0;
-      color: var(--muted);
-      font-weight: 650;
-    }
-
-    /* ABOUT */
-    #about{
-      text-align:center;
-    }
-
-    #about .lead{
-      max-width: 420px;
-      margin: 0 auto;
-    }
-
-    .twocol{
-      position: relative;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 18px;
-      margin-top: 8px;
-    }
-
-    .twocol > div:first-child{ padding-right: 18px; }
-    .twocol > div:last-child{ padding-left: 18px; }
-
-    .twocol::before{
-      content:"";
-      position:absolute;
-      top:6px;
-      bottom:6px;
-      left:50%;
-      width:3px;
-      border-radius:999px;
-      background: linear-gradient(
-        to bottom,
-        transparent,
-        var(--border),
-        transparent
-      );
-    }
-
-    @media (max-width: 860px){
-      .twocol{
-        grid-template-columns:1fr;
-      }
-      .twocol::before{ display:none; }
-      .twocol > div{
-        padding:0;
-      }
-    }
-
-    /* PROJECTS */
-    .projects{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:18px;
-    }
-
-    @media (max-width: 860px){
-      .projects{ grid-template-columns:1fr; }
-    }
-
-    .proj{
-      border-radius:16px;
-      border:1px solid var(--border);
-      background:#fff;
-      padding:20px;
-      display:grid;
+    /* Nav */
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
       gap:12px;
-      transition: transform .12s ease, box-shadow .12s ease;
+      padding: 12px 14px;
+      border:1px solid var(--line);
+      background: rgba(15,17,23,.72);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      position: sticky;
+      top: 14px;
+      z-index: 10;
     }
-
-    .proj:hover{
-      transform: translateY(-2px);
-      box-shadow: 0 18px 40px rgba(15,23,42,.10);
-    }
-
-    .proj h3{
-      margin:0;
-      font-size:1.05rem;
-      letter-spacing:-0.01em;
-    }
-
-    .proj p{
-      margin:0;
-      color:var(--muted);
+    .brand{
+      display:flex; align-items:center; gap:10px;
       font-weight:650;
+      letter-spacing:.2px;
+      white-space:nowrap;
     }
-
-    .tags{
-      display:flex;
-      flex-wrap:wrap;
-      gap:8px;
+    .dot{
+      width:10px; height:10px; border-radius:999px;
+      background: #7c5cff;
+      box-shadow: 0 0 0 3px rgba(124,92,255,.18);
+      flex:0 0 auto;
     }
-
-    .tag{
-      font-size:.85rem;
-      font-weight:850;
-      color:var(--muted);
-      border:1px solid var(--border);
-      background:#fafafa;
-      padding:6px 10px;
-      border-radius:999px;
-    }
-
-    footer{
-      margin-top: 30px;
+    .links{ display:flex; align-items:center; gap:10px; flex-wrap:wrap; justify-content:flex-end; }
+    .chip{
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(20,23,38,.65);
       color: var(--muted);
-      font-weight:700;
-      text-align:center;
+      font-size: 14px;
+    }
+    .chip:hover{ color: var(--text); text-decoration:none; border-color:#343755; }
+
+    /* Hero */
+    .hero{
+      margin-top: 18px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(15,17,23,.72);
+      backdrop-filter: blur(10px);
+      padding: 18px;
+      display:grid;
+      grid-template-columns: 160px 1fr;
+      gap: 18px;
+    }
+    .avatar{
+      width:160px; height:160px;
+      border-radius: 22px;
+      border:1px solid var(--line);
+      background: linear-gradient(135deg, rgba(124,92,255,.25), rgba(0,0,0,.2));
+      overflow:hidden;
+    }
+    .avatar img{ width:100%; height:100%; object-fit:cover; display:block; }
+
+    h1{
+      margin:0 0 8px;
+      font-size: clamp(26px, 3.2vw, 40px);
+      line-height:1.15;
+      letter-spacing:-.4px;
+    }
+    .bio{
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+      max-width: 62ch;
+    }
+    .ctaRow{ margin-top: 14px; display:flex; gap:10px; flex-wrap:wrap; }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border:1px solid var(--line);
+      background: rgba(20,23,38,.65);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 14px;
+    }
+    .btn:hover{ text-decoration:none; border-color:#3a3d5a; }
+    .btn.primary{
+      background: rgba(124,92,255,.18);
+      border-color: rgba(124,92,255,.35);
+    }
+
+    /* Sections */
+    .section{
+      margin-top: 22px;
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: rgba(15,17,23,.66);
+      padding: 18px;
+    }
+    .section h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing:.2px;
+    }
+    .item{
+      padding: 14px 0;
+      border-top: 1px solid var(--line);
+    }
+    .item:first-of-type{ border-top: none; padding-top: 6px; }
+    .roleRow{
+      display:flex; align-items:flex-start; justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .role{
+      font-weight: 700;
+      font-size: 15px;
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 14px;
+      white-space:nowrap;
+    }
+    ul{
+      margin: 10px 0 0 18px;
+      color: var(--muted);
+    }
+    li{ margin: 6px 0; }
+
+    .grid2{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .mini{
+      border:1px solid var(--line);
+      border-radius: 14px;
+      padding: 14px;
+      background: rgba(20,23,38,.35);
+    }
+    .mini h3{
+      margin:0 0 8px;
+      font-size: 14px;
+      color: var(--text);
+    }
+    .mini p{
+      margin:0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* Responsive */
+    @media (max-width: 720px){
+      .hero{ grid-template-columns: 1fr; }
+      .avatar{ width: 100%; height: 220px; }
+      .grid2{ grid-template-columns: 1fr; }
+      .meta{ white-space:normal; }
     }
   </style>
 </head>
 
 <body>
-  <div class="container">
+  <div class="wrap">
+    <header class="nav">
+      <a class="brand" href="/">
+        <span class="dot"></span>
+        <span>Josh Zeiontz</span>
+      </a>
 
-    <!-- HERO -->
-    <header>
-      <h1 class="name">Josh Zeiontz</h1>
-      <p class="role">Cross-Asset Investment Risk Analyst · New York</p>
-
-      <div class="accentLine"></div>
-
-      <p class="sub">
-        I build practical risk analytics and decision-support tools for multi-asset portfolios.
-      </p>
-
-      <div class="cta">
-        <a class="btn" href="mailto:jez0504@gmail.com">Email</a>
-        <a class="btn" href="https://www.linkedin.com/in/josh-zeiontz" target="_blank" rel="noreferrer">LinkedIn</a>
-        <a class="btn primary" href="https://docs.google.com/document/d/1b11RDLd31RlA9QNSDBkCmfsf4AkmICl8/edit" target="_blank" rel="noreferrer">Résumé</a>
-      </div>
+      <nav class="links">
+        <a class="chip" href="/about.html">About</a>
+        <a class="chip" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noreferrer">LinkedIn</a>
+        <a class="chip" href="mailto:YOUR.EMAIL@gmail.com">Contact</a>
+      </nav>
     </header>
 
-    <!-- ABOUT -->
-    <section id="about" class="card">
-      <h2>About</h2>
-      <div class="twocol">
-        <div>
-          <p class="lead">
-            I work with messy, real-world fund and market data and turn it into signals that people can actually use.
-            I’m most interested in building tools that clarify risk early, before it becomes a decision problem.
-          </p>
-        </div>
-        <div>
-          <p class="lead">
-            My background is quantitative (math and operations research), and I’m drawn to work at the intersection of
-            data engineering, portfolio intuition, and practical decision support.
-          </p>
+    <section class="hero">
+      <div class="avatar">
+        <!-- Replace with your headshot path -->
+        <img src="assets/headshot.jpg" alt="Josh Zeiontz headshot" />
+      </div>
+
+      <div>
+        <h1>Driven by markets. Built like software.</h1>
+        <p class="bio">
+          I’m a Cross-Asset Investment Risk Analyst at Morgan Stanley Investment Management, building
+          automated liquidity, counterparty, and leverage analytics across 930+ mutual funds, ETFs, and money-market portfolios.
+          I like turning messy portfolio data into production-grade pipelines, dashboards, and decision tools.
+        </p>
+
+        <div class="ctaRow">
+          <!-- Replace with your resume file path -->
+          <a class="btn primary" href="assets/Josh_Zeiontz_Resume.pdf" target="_blank" rel="noreferrer">Download Resume</a>
+          <a class="btn" href="mailto:YOUR.EMAIL@gmail.com">Email</a>
         </div>
       </div>
     </section>
 
-    <!-- CURRENT ROLE -->
-    <section id="role" class="card">
-      <h2>Current Role</h2>
-      <p class="lead">
-        I’m currently a <b>Cross-Asset Investment Risk Analyst</b> at <b>Morgan Stanley</b> in <b>New York</b>, working on
-        liquidity monitoring, counterparty exposure, and derivatives leverage across multi-asset fund portfolios.
-      </p>
+    <section class="section" id="experience">
+      <h2>Experience</h2>
+
+      <div class="item">
+        <div class="roleRow">
+          <div class="role">Cross-Asset Investment Risk Analyst</div>
+          <div class="meta">Morgan Stanley Investment Management · NYC</div>
+        </div>
+        <div class="meta">2025 — Present</div>
+        <ul>
+          <li>Architect and maintain automated liquidity, counterparty, and leverage dashboards using Python, SQL, and Linux across 930+ portfolios.</li>
+          <li>Build repeatable data ingestion + validation pipelines that convert position/cash/counterparty data into daily exposure analytics for PMs and senior leadership.</li>
+          <li>Translate regulatory thresholds and portfolio constraints into monitoring logic and scalable reporting workflows.</li>
+        </ul>
+      </div>
+
+      <div class="item">
+        <div class="roleRow">
+          <div class="role">Model Risk Analyst</div>
+          <div class="meta">MUFG · Tempe, AZ</div>
+        </div>
+        <div class="meta">2025</div>
+        <ul>
+          <li>Validated market and risk models; documented methodology, assumptions, limitations, and control tests.</li>
+          <li>Partnered with stakeholders to harden analytics and improve model governance workflows.</li>
+        </ul>
+      </div>
     </section>
 
-    <!-- PROJECTS -->
-    <section id="projects" class="card">
-      <h2>Projects</h2>
-      <div class="projects">
-        <div class="proj">
-          <h3>
-            <a href="https://josh-zeiontz.shinyapps.io/bondshinyclean/" target="_blank" rel="noreferrer">
-              Fixed Income Risk &amp; Sensitivity Analytics
-            </a>
-          </h3>
-          <p>
-            Fixed income analytics focused on pricing, interest rate sensitivity, and scenario-based risk analysis,
-            designed to support portfolio-level risk assessment.
-          </p>
-          <div class="tags">
-            <span class="tag">Fixed Income</span>
-            <span class="tag">Risk</span>
-            <span class="tag">Interest Rates</span>
-          </div>
+    <section class="section">
+      <h2>Skills</h2>
+      <div class="grid2">
+        <div class="mini">
+          <h3>Engineering</h3>
+          <p>Python · SQL · Linux · Git · Data pipelines · Automation · Reporting systems</p>
         </div>
-
-        <div class="proj">
-          <h3>
-            <a href="https://josh-zeiontz.shinyapps.io/PortfolioOptimizer/" target="_blank" rel="noreferrer">
-              Portfolio Optimization &amp; Risk–Return Analysis
-            </a>
-          </h3>
-          <p>
-            Portfolio optimization and efficient frontier analysis to support allocation decisions
-            and portfolio construction analysis.
-          </p>
-          <div class="tags">
-            <span class="tag">Optimization</span>
-            <span class="tag">Portfolio Construction</span>
-            <span class="tag">Risk–Return</span>
-          </div>
+        <div class="mini">
+          <h3>Risk & Markets</h3>
+          <p>Liquidity risk · Derivatives exposure · Counterparty risk · Leverage · Fund analytics</p>
         </div>
       </div>
     </section>
 
-    <footer>
-      © <span id="year"></span> Josh Zeiontz · joshzeiontz.com
-    </footer>
+    <section class="section">
+      <h2>Education</h2>
+      <div class="item">
+        <div class="roleRow">
+          <div class="role">M.S., Industrial Engineering (Online)</div>
+          <div class="meta">Arizona State University</div>
+        </div>
+        <div class="meta">Expected 2026</div>
+      </div>
 
+      <div class="item">
+        <div class="roleRow">
+          <div class="role">B.S., Mathematics</div>
+          <div class="meta">Arizona State University</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Awards</h2>
+      <div class="item">
+        <ul>
+          <li>Add 1–3 items max (keep it tight).</li>
+        </ul>
+      </div>
+    </section>
   </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
