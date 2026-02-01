@@ -4,15 +4,15 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>JOSH ZEIONTZ</title>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Teko:wght@700&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --black:  #0d0d0d;
-    --white:  #fafafa;
-    --yellow: #ffed4e;
-    --gray:   #878787;
+    --white:   #ffffff;
+    --black:   #0a0a0a;
+    --lime:    #00ff00;
+    --gray:    #6b6b6b;
   }
 
   html { scroll-behavior: smooth; }
@@ -21,7 +21,7 @@
     font-family: 'IBM Plex Mono', monospace;
     background: var(--white);
     color: var(--black);
-    line-height: 1.5;
+    line-height: 1.6;
     overflow-x: hidden;
   }
 
@@ -29,28 +29,29 @@
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 2rem 3rem;
+    padding: 1.5rem 3rem;
     background: var(--white);
-    border-bottom: 3px solid var(--black);
+    border-bottom: 4px solid var(--black);
   }
   nav .logo {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.4rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 2rem;
+    font-weight: 700;
     color: var(--black);
     text-decoration: none;
-    letter-spacing: -1px;
+    letter-spacing: 4px;
   }
-  nav .menu { display: flex; gap: 3rem; }
-  nav .menu a {
+  nav .links a {
     color: var(--black);
     text-decoration: none;
     font-size: .75rem;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    margin-left: 2.5rem;
     transition: color .2s;
   }
-  nav .menu a:hover { color: var(--gray); }
+  nav .links a:hover { color: var(--lime); }
 
   /* ─── HERO ─── */
   .hero {
@@ -60,35 +61,53 @@
     display: flex;
     align-items: center;
   }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%) rotate(-45deg);
+    width: 400px;
+    height: 400px;
+    background: var(--lime);
+    opacity: .15;
+    z-index: 0;
+  }
   .hero-container {
     max-width: 1600px;
     margin: 0 auto;
     width: 100%;
     position: relative;
+    z-index: 1;
   }
-  /* huge overlapping text */
   .hero-massive {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(5rem, 14vw, 18rem);
-    line-height: .85;
-    letter-spacing: -6px;
-    color: var(--black);
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(5rem, 15vw, 22rem);
+    line-height: .8;
+    font-weight: 700;
+    letter-spacing: -4px;
     margin-bottom: 2rem;
-    position: relative;
   }
-  .hero-massive .word {
+  .hero-massive .line {
     display: block;
   }
   .hero-massive .highlight {
-    background: var(--yellow);
-    padding: 0 1rem;
+    background: var(--lime);
+    color: var(--black);
+    padding: 0 1.5rem;
     display: inline-block;
+    transform: skew(-5deg);
   }
-  .hero-sub-container {
+  .hero-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
     margin-top: 3rem;
+  }
+  .hero-text {
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
   }
   .hero-label {
     font-size: .7rem;
@@ -96,12 +115,7 @@
     text-transform: uppercase;
     letter-spacing: 2px;
     color: var(--gray);
-    margin-bottom: .8rem;
-  }
-  .hero-text {
-    font-size: 1rem;
-    line-height: 1.6;
-    max-width: 500px;
+    margin-bottom: 1rem;
   }
   .hero-cta {
     display: flex;
@@ -116,7 +130,7 @@
     align-items: center;
     justify-content: center;
     padding: 1.2rem 2.5rem;
-    border: 3px solid var(--black);
+    border: 4px solid var(--black);
     font-family: 'IBM Plex Mono', monospace;
     font-size: .8rem;
     font-weight: 700;
@@ -125,14 +139,15 @@
     text-decoration: none;
     transition: all .2s;
     cursor: pointer;
+    transform: skew(-5deg);
   }
   .btn-primary {
-    background: var(--yellow);
+    background: var(--lime);
     color: var(--black);
   }
   .btn-primary:hover {
     background: var(--black);
-    color: var(--yellow);
+    color: var(--lime);
   }
   .btn-secondary {
     background: var(--white);
@@ -144,18 +159,29 @@
   }
 
   /* ─── SECTION ─── */
-  .section {
+  section {
     padding: 6rem 3rem;
     max-width: 1600px;
     margin: 0 auto;
   }
   .section-title {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(3rem, 8vw, 8rem);
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(3rem, 8vw, 10rem);
     line-height: .9;
-    letter-spacing: -4px;
+    font-weight: 700;
+    letter-spacing: -2px;
     margin-bottom: 4rem;
     color: var(--black);
+    position: relative;
+  }
+  .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 0;
+    width: 100px;
+    height: 8px;
+    background: var(--lime);
   }
 
   /* ─── EXPERIENCE ─── */
@@ -165,15 +191,26 @@
     gap: 0;
   }
   .exp-item {
-    border-top: 3px solid var(--black);
+    border-top: 4px solid var(--black);
     padding: 2.5rem 0;
     display: grid;
     grid-template-columns: 200px 1fr 150px;
     gap: 3rem;
     align-items: start;
+    position: relative;
   }
   .exp-item:last-child {
-    border-bottom: 3px solid var(--black);
+    border-bottom: 4px solid var(--black);
+  }
+  .exp-item::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 20px;
+    height: 20px;
+    background: var(--lime);
+    transform: rotate(45deg);
   }
   .exp-date {
     font-size: .75rem;
@@ -182,9 +219,10 @@
     letter-spacing: 1px;
   }
   .exp-content h3 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.5rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 2rem;
     line-height: 1.1;
+    font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: .5rem;
   }
@@ -205,11 +243,11 @@
     margin-bottom: .7rem;
   }
   .exp-content li::before {
-    content: '■';
+    content: '▪';
     position: absolute;
     left: 0;
-    color: var(--yellow);
-    font-size: .6rem;
+    color: var(--lime);
+    font-size: 1rem;
   }
   .exp-badge {
     text-align: right;
@@ -217,12 +255,13 @@
   .badge {
     display: inline-block;
     background: var(--black);
-    color: var(--yellow);
+    color: var(--lime);
     font-size: .65rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
     padding: .5rem 1rem;
+    transform: skew(-5deg);
   }
 
   /* ─── PROJECTS ─── */
@@ -232,28 +271,38 @@
     gap: 3rem;
   }
   .project-card {
-    border: 3px solid var(--black);
+    border: 4px solid var(--black);
     padding: 3rem;
     background: var(--white);
     transition: all .2s;
     position: relative;
   }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    width: 40px;
+    height: 40px;
+    background: var(--lime);
+    transform: rotate(45deg);
+    transition: all .2s;
+  }
   .project-card:hover {
-    background: var(--yellow);
-    transform: translate(8px, -8px);
-    box-shadow: -8px 8px 0 var(--black);
+    background: var(--lime);
+    transform: translate(10px, -10px);
+    box-shadow: -10px 10px 0 var(--black);
+  }
+  .project-card:hover::before {
+    background: var(--black);
   }
   .project-num {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 4rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 6rem;
     line-height: 1;
-    color: var(--yellow);
-    -webkit-text-stroke: 2px var(--black);
+    font-weight: 700;
+    color: rgba(0,0,0,.05);
     margin-bottom: 1rem;
-  }
-  .project-card:hover .project-num {
-    color: var(--black);
-    -webkit-text-stroke: 0;
   }
   .project-tag {
     font-size: .65rem;
@@ -264,9 +313,10 @@
     display: block;
   }
   .project-card h3 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.6rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 2rem;
     line-height: 1.1;
+    font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: 1rem;
   }
@@ -294,16 +344,27 @@
     gap: 3rem;
   }
   .skill-box {
-    border: 3px solid var(--black);
+    border: 4px solid var(--black);
     padding: 2.5rem;
+    position: relative;
+  }
+  .skill-box::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: var(--lime);
   }
   .skill-box h3 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.2rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.6rem;
+    font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: 2rem;
     padding-bottom: 1rem;
-    border-bottom: 3px solid var(--black);
+    border-bottom: 4px solid var(--black);
   }
   .skill-list {
     display: flex;
@@ -326,7 +387,7 @@
     letter-spacing: 1px;
     padding: .3rem .7rem;
     background: var(--black);
-    color: var(--yellow);
+    color: var(--lime);
   }
 
   /* ─── EDUCATION ─── */
@@ -336,14 +397,28 @@
     gap: 3rem;
   }
   .edu-box {
-    border: 3px solid var(--black);
+    border: 4px solid var(--black);
     padding: 3rem;
-    background: var(--yellow);
+    background: var(--lime);
+    color: var(--black);
+    position: relative;
+  }
+  .edu-box::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 60px 60px;
+    border-color: transparent transparent var(--black) transparent;
   }
   .edu-box h3 {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 1.4rem;
+    font-family: 'Teko', sans-serif;
+    font-size: 1.8rem;
     line-height: 1.1;
+    font-weight: 700;
     letter-spacing: -1px;
     margin-bottom: .5rem;
   }
@@ -364,33 +439,52 @@
     color: var(--white);
     padding: 8rem 3rem;
     text-align: center;
+    position: relative;
+  }
+  .contact::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10%;
+    transform: translateY(-50%) rotate(45deg);
+    width: 300px;
+    height: 300px;
+    background: var(--lime);
+    opacity: .1;
   }
   .contact-title {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: clamp(3.5rem, 10vw, 10rem);
+    font-family: 'Teko', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 12rem);
     line-height: .9;
-    letter-spacing: -4px;
+    font-weight: 700;
+    letter-spacing: -2px;
     margin-bottom: 2rem;
+    position: relative;
+    z-index: 1;
   }
-  .contact-title .yellow {
-    color: var(--yellow);
+  .contact-title .lime {
+    color: var(--lime);
   }
   .contact p {
     font-size: 1rem;
     max-width: 600px;
     margin: 0 auto 3rem;
     color: var(--gray);
+    position: relative;
+    z-index: 1;
   }
   .contact-cta {
     display: flex;
     gap: 1.5rem;
     justify-content: center;
     flex-wrap: wrap;
+    position: relative;
+    z-index: 1;
   }
   .contact .btn-primary {
-    background: var(--yellow);
+    background: var(--lime);
     color: var(--black);
-    border-color: var(--yellow);
+    border-color: var(--lime);
   }
   .contact .btn-secondary {
     background: transparent;
@@ -410,15 +504,15 @@
     text-transform: uppercase;
     letter-spacing: 1px;
     font-weight: 700;
-    border-top: 3px solid var(--black);
+    border-top: 4px solid var(--black);
   }
 
   /* ─── RESPONSIVE ─── */
   @media (max-width: 1024px) {
     nav { padding: 1.5rem 2rem; }
     .hero { padding: 8rem 2rem 4rem; }
-    .hero-sub-container { grid-template-columns: 1fr; gap: 2rem; }
-    .section { padding: 4rem 2rem; }
+    .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+    section { padding: 4rem 2rem; }
     .exp-item { grid-template-columns: 1fr; gap: 1.5rem; }
     .exp-badge { text-align: left; }
     .projects-grid { grid-template-columns: 1fr; }
@@ -426,7 +520,7 @@
     .edu-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 640px) {
-    nav .menu { display: none; }
+    nav .links { display: none; }
     .hero-massive { font-size: clamp(3rem, 15vw, 5rem); }
   }
 </style>
@@ -436,7 +530,7 @@
 <!-- NAV -->
 <nav>
   <a href="#" class="logo">ZEIONTZ</a>
-  <div class="menu">
+  <div class="links">
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
@@ -448,10 +542,10 @@
 <section class="hero">
   <div class="hero-container">
     <div class="hero-massive">
-      <span class="word">DRIVEN</span>
-      <span class="word">BY <span class="highlight">MARKETS</span></span>
+      <span class="line">DRIVEN</span>
+      <span class="line">BY <span class="highlight">MARKETS</span></span>
     </div>
-    <div class="hero-sub-container">
+    <div class="hero-grid">
       <div>
         <div class="hero-label">Cross-Asset Investment Risk · NYC</div>
         <p class="hero-text">I build automated analytics, pipelines, and dashboards that turn complex portfolio data into material investment insights — at scale. Currently monitoring 930+ portfolios at Morgan Stanley.</p>
@@ -465,7 +559,7 @@
 </section>
 
 <!-- EXPERIENCE -->
-<section class="section" id="experience">
+<section id="experience">
   <h2 class="section-title">EXPERIENCE</h2>
   <div class="exp-list">
     
@@ -530,7 +624,7 @@
 </section>
 
 <!-- PROJECTS -->
-<section class="section" id="projects">
+<section id="projects">
   <h2 class="section-title">PROJECTS</h2>
   <div class="projects-grid">
     
@@ -564,7 +658,7 @@
 </section>
 
 <!-- SKILLS -->
-<section class="section" id="skills">
+<section id="skills">
   <h2 class="section-title">SKILLS</h2>
   <div class="skills-container">
     
@@ -642,7 +736,7 @@
 </section>
 
 <!-- EDUCATION -->
-<section class="section" id="education">
+<section id="education">
   <h2 class="section-title">EDUCATION</h2>
   <div class="edu-grid">
     
@@ -663,7 +757,7 @@
 
 <!-- CONTACT -->
 <section class="contact" id="contact">
-  <h2 class="contact-title">LET'S <span class="yellow">WORK</span><br/>TOGETHER</h2>
+  <h2 class="contact-title">LET'S <span class="lime">WORK</span><br/>TOGETHER</h2>
   <p>Open to opportunities at the intersection of quantitative finance and systems engineering.</p>
   <div class="contact-cta">
     <a href="mailto:jez0504@gmail.com" class="btn btn-primary">Email Me</a>
