@@ -3,29 +3,25 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Josh Zeiontz</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<title>JOSH ZEIONTZ</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&family=Archivo+Black&display=swap" rel="stylesheet"/>
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:      #f0f0ec;
-    --surface: #ffffff;
-    --border:  #ddddd8;
-    --muted:   #7a7a72;
-    --body:    #3d3d3a;
-    --dark:    #1a1a1a;
-    --accent:  #0dff9e;
-    --accent2: #1a1a1a;
+    --black:  #0d0d0d;
+    --white:  #fafafa;
+    --yellow: #ffed4e;
+    --gray:   #878787;
   }
 
   html { scroll-behavior: smooth; }
 
   body {
-    font-family: 'Inter', sans-serif;
-    background: var(--bg);
-    color: var(--body);
-    line-height: 1.6;
+    font-family: 'IBM Plex Mono', monospace;
+    background: var(--white);
+    color: var(--black);
+    line-height: 1.5;
     overflow-x: hidden;
   }
 
@@ -33,389 +29,405 @@
   nav {
     position: fixed; top: 0; width: 100%; z-index: 100;
     display: flex; justify-content: space-between; align-items: center;
-    padding: 1.2rem 2.5rem;
-    background: rgba(240,240,236,.88);
-    backdrop-filter: blur(16px);
-    border-bottom: 1px solid var(--border);
+    padding: 2rem 3rem;
+    background: var(--white);
+    border-bottom: 3px solid var(--black);
   }
   nav .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.3rem;
-    color: var(--dark);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.4rem;
+    color: var(--black);
     text-decoration: none;
-    letter-spacing: 2px;
+    letter-spacing: -1px;
   }
-  nav .links a {
-    color: var(--muted);
+  nav .menu { display: flex; gap: 3rem; }
+  nav .menu a {
+    color: var(--black);
     text-decoration: none;
-    font-size: .72rem;
+    font-size: .75rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.8px;
-    margin-left: 2rem;
-    transition: color .3s;
-    font-weight: 500;
+    letter-spacing: 1px;
+    transition: color .2s;
   }
-  nav .links a:hover { color: var(--dark); }
+  nav .menu a:hover { color: var(--gray); }
 
   /* ─── HERO ─── */
   .hero {
-    min-height: 50vh;
+    min-height: 100vh;
+    padding: 10rem 3rem 5rem;
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  .hero-container {
+    max-width: 1600px;
+    margin: 0 auto;
+    width: 100%;
+    position: relative;
+  }
+  /* huge overlapping text */
+  .hero-massive {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(5rem, 14vw, 18rem);
+    line-height: .85;
+    letter-spacing: -6px;
+    color: var(--black);
+    margin-bottom: 2rem;
+    position: relative;
+  }
+  .hero-massive .word {
+    display: block;
+  }
+  .hero-massive .highlight {
+    background: var(--yellow);
+    padding: 0 1rem;
+    display: inline-block;
+  }
+  .hero-sub-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
-    align-items: start;
-    padding: 4rem 4rem 1.5rem;
-    position: relative;
-  }
-  .hero-left { 
-    position: relative; 
-    z-index: 1; 
-  }
-  .hero-right {
-    position: relative;
-    z-index: 1;
+    margin-top: 3rem;
   }
   .hero-label {
-    display: inline-flex; align-items: center; gap: .6rem;
-    font-size: .68rem;
-    text-transform: uppercase;
-    letter-spacing: 2.5px;
-    color: var(--muted);
-    font-weight: 600;
-    margin-bottom: .7rem;
-    opacity: 0; animation: fadeUp .6s .2s forwards;
-  }
-  .hero-label .tag {
-    background: var(--accent);
-    color: var(--dark);
-    padding: .18rem .5rem;
-    border-radius: 3px;
-    font-size: .6rem;
+    font-size: .7rem;
     font-weight: 700;
-    letter-spacing: 1px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--gray);
+    margin-bottom: .8rem;
   }
-  .hero h1 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(3.5rem, 9vw, 7rem);
-    color: var(--dark);
-    line-height: .9;
-    letter-spacing: -1px;
-    opacity: 0; animation: fadeUp .7s .3s forwards;
-  }
-  .hero h1 .outline {
-    -webkit-text-stroke: 2px var(--dark);
-    color: transparent;
-  }
-  .hero h1 .green { color: var(--accent); }
-  .hero-sub {
-    margin-top: 1rem;
-    max-width: 380px;
-    font-size: .88rem;
-    color: var(--muted);
-    font-weight: 300;
-    line-height: 1.75;
-    opacity: 0; animation: fadeUp .7s .45s forwards;
+  .hero-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    max-width: 500px;
   }
   .hero-cta {
-    margin-top: 1.2rem;
-    display: flex; gap: .7rem;
-    opacity: 0; animation: fadeUp .7s .6s forwards;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: flex-end;
   }
-
-
 
   /* ─── BUTTONS ─── */
   .btn {
-    display: inline-block;
-    padding: .7rem 1.7rem;
-    border-radius: 8px;
-    font-size: .72rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.2rem 2.5rem;
+    border: 3px solid var(--black);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: .8rem;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 1.6px;
+    letter-spacing: 1px;
     text-decoration: none;
-    font-weight: 600;
-    transition: all .25s;
+    transition: all .2s;
     cursor: pointer;
-    border: none;
   }
   .btn-primary {
-    background: var(--dark);
-    color: #fff;
+    background: var(--yellow);
+    color: var(--black);
   }
-  .btn-primary:hover { background: #333; transform: translateY(-2px); }
-  .btn-accent {
-    background: var(--accent);
-    color: var(--dark);
+  .btn-primary:hover {
+    background: var(--black);
+    color: var(--yellow);
   }
-  .btn-accent:hover { background: #0beda0; transform: translateY(-2px); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--dark);
-    border: 1.5px solid var(--border);
+  .btn-secondary {
+    background: var(--white);
+    color: var(--black);
   }
-  .btn-ghost:hover { border-color: var(--dark); }
-
-  /* ─── DIVIDER ─── */
-  .divider {
-    max-width: 980px; margin: 0 auto;
-    height: 1px; background: var(--border);
+  .btn-secondary:hover {
+    background: var(--black);
+    color: var(--white);
   }
 
-  /* ─── SECTION COMMONS ─── */
-  .section-wrap { padding: 2.5rem 4rem; max-width: 1400px; margin: 0 auto; }
-  #experience, #education { max-width: 1100px; margin-left: auto; margin-right: auto; }
-  .section-header {
-    display: flex; justify-content: space-between; align-items: flex-end;
-    margin-bottom: 1.3rem;
-    flex-wrap: wrap; gap: 1rem;
+  /* ─── SECTION ─── */
+  .section {
+    padding: 6rem 3rem;
+    max-width: 1600px;
+    margin: 0 auto;
   }
-  .section-header h2 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-    color: var(--dark);
-    letter-spacing: 1px;
-    line-height: 1;
-  }
-  .section-header .section-count {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 4rem;
-    color: var(--accent);
-    line-height: 1;
-    opacity: .6;
+  .section-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(3rem, 8vw, 8rem);
+    line-height: .9;
+    letter-spacing: -4px;
+    margin-bottom: 4rem;
+    color: var(--black);
   }
 
   /* ─── EXPERIENCE ─── */
+  .exp-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
   .exp-item {
+    border-top: 3px solid var(--black);
+    padding: 2.5rem 0;
     display: grid;
-    grid-template-columns: 1fr auto;
-    gap: 0 2rem;
+    grid-template-columns: 200px 1fr 150px;
+    gap: 3rem;
     align-items: start;
-    padding: .9rem 0;
-    border-bottom: 1px solid var(--border);
-    transition: opacity .5s, transform .5s;
   }
-  .exp-item.visible { opacity: 1; transform: translateY(0); }
-  .exp-item:last-child { border-bottom: none; }
-  .exp-mid .exp-role {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.15rem;
-    color: var(--dark);
-    letter-spacing: .5px;
-  }
-  .exp-mid .exp-company {
-    font-size: .78rem;
-    color: var(--muted);
-    margin-top: .1rem;
-  }
-  .exp-mid .exp-desc {
-    margin-top: .55rem;
-    font-size: .8rem;
-    color: var(--muted);
-  }
-  .exp-mid .exp-desc li {
-    list-style: none;
-    padding-left: .9rem;
-    position: relative;
-    margin-bottom: .25rem;
-  }
-  .exp-mid .exp-desc li::before {
-    content: '›';
-    position: absolute; left: 0;
-    color: var(--accent);
-    font-weight: 700;
+  .exp-item:last-child {
+    border-bottom: 3px solid var(--black);
   }
   .exp-date {
-    font-size: .7rem;
-    color: var(--muted);
-    white-space: nowrap;
-    font-weight: 500;
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .exp-content h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.5rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: .5rem;
+  }
+  .exp-content .company {
+    font-size: .8rem;
+    font-weight: 700;
+    color: var(--gray);
+    margin-bottom: 1.2rem;
+  }
+  .exp-content ul {
+    list-style: none;
+  }
+  .exp-content li {
+    font-size: .85rem;
+    line-height: 1.6;
+    padding-left: 1.5rem;
+    position: relative;
+    margin-bottom: .7rem;
+  }
+  .exp-content li::before {
+    content: '■';
+    position: absolute;
+    left: 0;
+    color: var(--yellow);
+    font-size: .6rem;
+  }
+  .exp-badge {
     text-align: right;
-    padding-top: .1rem;
+  }
+  .badge {
+    display: inline-block;
+    background: var(--black);
+    color: var(--yellow);
+    font-size: .65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: .5rem 1rem;
   }
 
   /* ─── PROJECTS ─── */
   .projects-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
   }
   .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 1.8rem;
+    border: 3px solid var(--black);
+    padding: 3rem;
+    background: var(--white);
+    transition: all .2s;
     position: relative;
-    transition: opacity .5s, transform .5s, border-color .3s, box-shadow .3s;
   }
-  .project-card.visible { opacity: 1; transform: translateY(0); }
   .project-card:hover {
-    border-color: var(--accent);
-    box-shadow: 0 4px 24px rgba(13,255,158,.15);
+    background: var(--yellow);
+    transform: translate(8px, -8px);
+    box-shadow: -8px 8px 0 var(--black);
   }
   .project-num {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 3.5rem;
-    color: var(--border);
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 4rem;
     line-height: 1;
-    margin-bottom: .3rem;
+    color: var(--yellow);
+    -webkit-text-stroke: 2px var(--black);
+    margin-bottom: 1rem;
+  }
+  .project-card:hover .project-num {
+    color: var(--black);
+    -webkit-text-stroke: 0;
   }
   .project-tag {
-    font-size: .62rem;
-    text-transform: uppercase;
-    letter-spacing: 1.4px;
-    color: var(--dark);
-    background: var(--accent);
-    display: inline-block;
-    padding: .2rem .5rem;
-    border-radius: 4px;
+    font-size: .65rem;
     font-weight: 700;
-    margin-bottom: .6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 1rem;
+    display: block;
   }
   .project-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 1.2rem;
-    color: var(--dark);
-    letter-spacing: .5px;
-    margin-bottom: .4rem;
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.6rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    margin-bottom: 1rem;
   }
   .project-card p {
-    font-size: .78rem;
-    color: var(--muted);
+    font-size: .85rem;
     line-height: 1.6;
+    margin-bottom: 1.5rem;
   }
   .project-stack {
-    margin-top: .9rem;
-    display: flex; flex-wrap: wrap; gap: .35rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .7rem;
   }
   .project-stack span {
-    font-size: .65rem;
-    color: var(--muted);
-    background: var(--bg);
-    border: 1px solid var(--border);
-    padding: .18rem .5rem;
-    border-radius: 20px;
-    font-weight: 500;
+    font-size: .7rem;
+    font-weight: 700;
+    border: 2px solid var(--black);
+    padding: .4rem .8rem;
   }
 
   /* ─── SKILLS ─── */
-  .skills-grid {
+  .skills-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 2rem;
+    gap: 3rem;
   }
-  .skill-group {
-    transition: opacity .5s, transform .5s;
+  .skill-box {
+    border: 3px solid var(--black);
+    padding: 2.5rem;
   }
-  .skill-group.visible { opacity: 1; transform: translateY(0); }
-  .skill-group h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: .95rem;
-    color: var(--dark);
-    letter-spacing: 1.5px;
-    margin-bottom: .8rem;
-    padding-bottom: .5rem;
-    border-bottom: 2px solid var(--dark);
+  .skill-box h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.2rem;
+    letter-spacing: -1px;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--black);
+  }
+  .skill-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
   }
   .skill-row {
-    display: flex; justify-content: space-between; align-items: center;
-    padding: .4rem 0;
-    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: .8rem;
   }
-  .skill-row:last-child { border-bottom: none; }
-  .skill-name { font-size: .8rem; color: var(--body); font-weight: 500; }
-  .skill-badge {
-    font-size: .6rem;
+  .skill-name {
+    font-weight: 700;
+  }
+  .skill-level {
+    font-size: .65rem;
+    font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1px;
-    padding: .18rem .5rem;
-    border-radius: 20px;
-    font-weight: 600;
+    padding: .3rem .7rem;
+    background: var(--black);
+    color: var(--yellow);
   }
-  .badge-expert       { background: #d1fae5; color: #065f46; }
-  .badge-advanced     { background: #dbeafe; color: #1e40af; }
-  .badge-intermediate { background: #fef3c7; color: #92400e; }
-  .badge-beginner     { background: #ede9fe; color: #5b21b6; }
 
   /* ─── EDUCATION ─── */
-  .edu-row {
-    display: flex; justify-content: space-between; align-items: baseline;
-    padding: 1rem 0;
-    border-bottom: 1px solid var(--border);
-    flex-wrap: wrap; gap: .4rem;
+  .edu-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
   }
-  .edu-row:last-child { border-bottom: none; }
-  .edu-row h4 {
-    font-family: 'Bebas Neue', sans-serif;
-    color: var(--dark);
-    font-size: 1rem;
-    letter-spacing: .5px;
+  .edu-box {
+    border: 3px solid var(--black);
+    padding: 3rem;
+    background: var(--yellow);
   }
-  .edu-row .edu-sub { color: var(--muted); font-size: .76rem; }
-  .edu-row .edu-date { color: var(--muted); font-size: .76rem; font-weight: 500; }
-
-  /* ─── CONTACT ─── */
-  .contact-wrap {
-    margin: 0 2.5rem 2.5rem;
-    background: var(--dark);
-    border-radius: 24px;
-    padding: 3rem 2.5rem;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-  .contact-wrap::before {
-    content: 'JZ';
-    position: absolute;
-    bottom: -10%; right: -5%;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 22rem;
-    color: rgba(255,255,255,.03);
-    pointer-events: none;
-    line-height: 1;
-  }
-  .contact-wrap h2 {
-    position: relative; z-index: 1;
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: clamp(2.2rem, 6vw, 3.8rem);
-    color: #fff;
-    letter-spacing: 1px;
+  .edu-box h3 {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: 1.4rem;
+    line-height: 1.1;
+    letter-spacing: -1px;
     margin-bottom: .5rem;
   }
-  .contact-wrap h2 .green { color: var(--accent); }
-  .contact-wrap p {
-    position: relative; z-index: 1;
-    color: rgba(255,255,255,.4);
-    font-size: .82rem;
-    max-width: 400px;
-    margin: 0 auto 1.8rem;
+  .edu-school {
+    font-size: .85rem;
+    margin-bottom: .5rem;
   }
-  .contact-links { position: relative; z-index: 1; display: flex; justify-content: center; gap: .7rem; flex-wrap: wrap; }
-  .contact-links .btn-ghost { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.2); }
-  .contact-links .btn-ghost:hover { border-color: #fff; color: #fff; }
+  .edu-date {
+    font-size: .75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* ─── CONTACT ─── */
+  .contact {
+    background: var(--black);
+    color: var(--white);
+    padding: 8rem 3rem;
+    text-align: center;
+  }
+  .contact-title {
+    font-family: 'Archivo Black', sans-serif;
+    font-size: clamp(3.5rem, 10vw, 10rem);
+    line-height: .9;
+    letter-spacing: -4px;
+    margin-bottom: 2rem;
+  }
+  .contact-title .yellow {
+    color: var(--yellow);
+  }
+  .contact p {
+    font-size: 1rem;
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    color: var(--gray);
+  }
+  .contact-cta {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .contact .btn-primary {
+    background: var(--yellow);
+    color: var(--black);
+    border-color: var(--yellow);
+  }
+  .contact .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    border-color: var(--white);
+  }
+  .contact .btn-secondary:hover {
+    background: var(--white);
+    color: var(--black);
+  }
 
   /* ─── FOOTER ─── */
   footer {
+    padding: 2rem;
     text-align: center;
-    padding: 1.5rem;
-    font-size: .68rem;
-    color: var(--muted);
-  }
-
-  /* ─── ANIMATIONS ─── */
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(22px); }
-    to   { opacity: 1; transform: translateY(0); }
+    font-size: .7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+    border-top: 3px solid var(--black);
   }
 
   /* ─── RESPONSIVE ─── */
-  @media (max-width: 700px) {
-    nav { padding: 1rem 1.5rem; }
-    nav .links a { margin-left: 1rem; font-size: .68rem; }
-    .hero { grid-template-columns: 1fr; min-height: auto; padding: 5.5rem 1.5rem 2rem; }
-    .section-wrap { padding: 3rem 1.5rem; }
+  @media (max-width: 1024px) {
+    nav { padding: 1.5rem 2rem; }
+    .hero { padding: 8rem 2rem 4rem; }
+    .hero-sub-container { grid-template-columns: 1fr; gap: 2rem; }
+    .section { padding: 4rem 2rem; }
+    .exp-item { grid-template-columns: 1fr; gap: 1.5rem; }
+    .exp-badge { text-align: left; }
     .projects-grid { grid-template-columns: 1fr; }
-    .skills-grid { grid-template-columns: 1fr; }
-    .contact-wrap { margin: 0 1rem 1.5rem; padding: 2.5rem 1.5rem; }
+    .skills-container { grid-template-columns: 1fr; }
+    .edu-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    nav .menu { display: none; }
+    .hero-massive { font-size: clamp(3rem, 15vw, 5rem); }
   }
 </style>
 </head>
@@ -423,8 +435,8 @@
 
 <!-- NAV -->
 <nav>
-  <a href="#" class="logo">Josh Zeiontz</a>
-  <div class="links">
+  <a href="#" class="logo">ZEIONTZ</a>
+  <div class="menu">
     <a href="#experience">Experience</a>
     <a href="#projects">Projects</a>
     <a href="#skills">Skills</a>
@@ -434,192 +446,236 @@
 
 <!-- HERO -->
 <section class="hero">
-  <div class="hero-left">
-    <div class="hero-label"><span class="tag">NYC</span> Morgan Stanley · Risk Analyst</div>
-    <h1>Built<br/><span class="outline">for</span><br/><span class="green">risk.</span></h1>
-  </div>
-  <div class="hero-right">
-    <p class="hero-sub">I build automated analytics, pipelines, and dashboards that turn complex portfolio data into material investment insights — at scale.</p>
-    <div class="hero-cta">
-      <a href="#" class="btn btn-primary">Download Resume</a>
-      <a href="#contact" class="btn btn-accent">Get In Touch</a>
+  <div class="hero-container">
+    <div class="hero-massive">
+      <span class="word">DRIVEN</span>
+      <span class="word">BY <span class="highlight">MARKETS</span></span>
+    </div>
+    <div class="hero-sub-container">
+      <div>
+        <div class="hero-label">Cross-Asset Investment Risk · NYC</div>
+        <p class="hero-text">I build automated analytics, pipelines, and dashboards that turn complex portfolio data into material investment insights — at scale. Currently monitoring 930+ portfolios at Morgan Stanley.</p>
+      </div>
+      <div class="hero-cta">
+        <a href="#" class="btn btn-primary">Download Resume</a>
+        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+      </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
 <!-- EXPERIENCE -->
-<div class="section-wrap" id="experience">
-  <div class="section-header">
-    <h2>Experience</h2>
-  </div>
-
-  <div class="exp-item">
-    <div class="exp-mid">
-      <div class="exp-role">Cross-Asset Investment Risk Analyst</div>
-      <div class="exp-company">Morgan Stanley — New York, NY</div>
-      <ul class="exp-desc">
-        <li>Developer and owner of automated liquidity, counterparty, and leverage analytics tools built in Python, SQL, and Linux, supporting portfolio monitoring across 930+ multi-asset investment portfolios.</li>
-        <li>Deliver daily portfolio risk, liquidity, and counterparty exposure insights to portfolio managers and senior leadership, supporting allocation, hedging, and funding decisions.</li>
-        <li>Collaborate with investment teams to align portfolio construction and liquidity management with market conditions and regulatory thresholds.</li>
-      </ul>
+<section class="section" id="experience">
+  <h2 class="section-title">EXPERIENCE</h2>
+  <div class="exp-list">
+    
+    <div class="exp-item">
+      <div class="exp-date">Sept 2025 — Present</div>
+      <div class="exp-content">
+        <h3>Cross-Asset Investment Risk Analyst</h3>
+        <div class="company">Morgan Stanley — New York, NY</div>
+        <ul>
+          <li>Developer and owner of automated liquidity, counterparty, and leverage analytics tools built in Python, SQL, and Linux, supporting portfolio monitoring across 930+ multi-asset investment portfolios.</li>
+          <li>Deliver daily portfolio risk, liquidity, and counterparty exposure insights to portfolio managers and senior leadership, supporting allocation, hedging, and funding decisions.</li>
+          <li>Collaborate with investment teams to align portfolio construction and liquidity management with market conditions and regulatory thresholds.</li>
+        </ul>
+      </div>
+      <div class="exp-badge">
+        <span class="badge">CURRENT</span>
+      </div>
     </div>
-    <div class="exp-date">Sept 2025 — Present</div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-mid">
-      <div class="exp-role">Model Risk Analyst</div>
-      <div class="exp-company">MUFG — Tempe, AZ</div>
-      <ul class="exp-desc">
-        <li>Validated market risk models including VaR, interest rate swaps, credit sensitivities, and market data aggregation through benchmarking, backtesting, and collaboration with Market Risk teams.</li>
-        <li>Extracted and analyzed data from Bloomberg using BQL functions to support validation and automate workflows using R and Python.</li>
-        <li>Authored comprehensive model documentation detailing methodology, assumptions, validation results, and regulatory considerations.</li>
-      </ul>
+    <div class="exp-item">
+      <div class="exp-date">Jan 2025 — Sept 2025</div>
+      <div class="exp-content">
+        <h3>Model Risk Analyst</h3>
+        <div class="company">MUFG — Tempe, AZ</div>
+        <ul>
+          <li>Validated market risk models including VaR, interest rate swaps, credit sensitivities, and market data aggregation through benchmarking, backtesting, and collaboration with Market Risk teams.</li>
+          <li>Extracted and analyzed data from Bloomberg using BQL functions to support validation and automate workflows using R and Python.</li>
+          <li>Authored comprehensive model documentation detailing methodology, assumptions, validation results, and regulatory considerations.</li>
+        </ul>
+      </div>
+      <div class="exp-badge"></div>
     </div>
-    <div class="exp-date">Jan 2025 — Sept 2025</div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-mid">
-      <div class="exp-role">Model Risk Summer Analyst</div>
-      <div class="exp-company">MUFG — Tempe, AZ</div>
-      <ul class="exp-desc">
-        <li>Assisted with periodic and scope validations for name screening, transaction, and securities lending models.</li>
-        <li>Scripted challenger models in R including Levenshtein Distance, Soundex, and DCM forecasting for backtesting, benchmarking, and sensitivity analysis.</li>
-        <li>Collaborated with model owners to conduct 25 performance monitoring reports.</li>
-      </ul>
+    <div class="exp-item">
+      <div class="exp-date">June 2024 — Aug 2024</div>
+      <div class="exp-content">
+        <h3>Model Risk Summer Analyst</h3>
+        <div class="company">MUFG — Tempe, AZ</div>
+        <ul>
+          <li>Assisted with periodic and scope validations for name screening, transaction, and securities lending models.</li>
+          <li>Scripted challenger models in R including Levenshtein Distance, Soundex, and DCM forecasting for backtesting, benchmarking, and sensitivity analysis.</li>
+          <li>Collaborated with model owners to conduct 25 performance monitoring reports.</li>
+        </ul>
+      </div>
+      <div class="exp-badge"></div>
     </div>
-    <div class="exp-date">June 2024 — Aug 2024</div>
-  </div>
 
-  <div class="exp-item">
-    <div class="exp-mid">
-      <div class="exp-role">Enterprise Risk Management Intern</div>
-      <div class="exp-company">Enterprise Bank and Trust — Phoenix, AZ</div>
-      <ul class="exp-desc">
-        <li>Evaluated the likelihood and potential impact of identified risks throughout 7 departments using decision trees and risk matrices.</li>
-        <li>Prepared reports and presentations for management using Excel, sharing key risk findings, trends, and mitigation strategies.</li>
-      </ul>
+    <div class="exp-item">
+      <div class="exp-date">Aug 2023 — Dec 2023</div>
+      <div class="exp-content">
+        <h3>Enterprise Risk Management Intern</h3>
+        <div class="company">Enterprise Bank and Trust — Phoenix, AZ</div>
+        <ul>
+          <li>Evaluated the likelihood and potential impact of identified risks throughout 7 departments using decision trees and risk matrices.</li>
+          <li>Prepared reports and presentations for management using Excel, sharing key risk findings, trends, and mitigation strategies.</li>
+        </ul>
+      </div>
+      <div class="exp-badge"></div>
     </div>
-    <div class="exp-date">Aug 2023 — Dec 2023</div>
-  </div>
-</div>
 
-<div class="divider"></div>
+  </div>
+</section>
 
 <!-- PROJECTS -->
-<div class="section-wrap" id="projects">
-  <div class="section-header">
-    <h2>Projects</h2>
-  </div>
+<section class="section" id="projects">
+  <h2 class="section-title">PROJECTS</h2>
   <div class="projects-grid">
-
+    
     <div class="project-card">
       <div class="project-num">01</div>
-      <div class="project-tag">Fixed Income</div>
+      <span class="project-tag">FIXED INCOME</span>
       <h3>Bond Portfolio Sensitivity Engine</h3>
       <p>Built custom functions in R for pricing, duration, convexity, and DV01. Applied discounted cash flow methods for portfolio stress testing and risk-return analysis.</p>
       <div class="project-stack">
-        <span>R</span><span>DCF</span><span>Stress Testing</span><span>Fixed Income</span>
+        <span>R</span>
+        <span>DCF</span>
+        <span>STRESS TESTING</span>
+        <span>FIXED INCOME</span>
       </div>
     </div>
 
     <div class="project-card">
       <div class="project-num">02</div>
-      <div class="project-tag">Portfolio Analytics</div>
+      <span class="project-tag">PORTFOLIO ANALYTICS</span>
       <h3>Portfolio Optimization Dashboard</h3>
       <p>Designed an interactive tool that calculates efficient frontiers, maximizes Sharpe ratio, and visualizes portfolio allocation, volatility, and performance attribution.</p>
       <div class="project-stack">
-        <span>R</span><span>Optimization</span><span>Sharpe Ratio</span><span>Visualization</span>
+        <span>R</span>
+        <span>OPTIMIZATION</span>
+        <span>SHARPE RATIO</span>
+        <span>VISUALIZATION</span>
       </div>
     </div>
 
   </div>
-</div>
-
-<div class="divider"></div>
+</section>
 
 <!-- SKILLS -->
-<div class="section-wrap" id="skills">
-  <div class="section-header">
-    <h2>Skills</h2>
+<section class="section" id="skills">
+  <h2 class="section-title">SKILLS</h2>
+  <div class="skills-container">
+    
+    <div class="skill-box">
+      <h3>Tools & Languages</h3>
+      <div class="skill-list">
+        <div class="skill-row">
+          <span class="skill-name">Python</span>
+          <span class="skill-level">Expert</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">R</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">SQL</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Excel</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Linux</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-box">
+      <h3>Platforms & Systems</h3>
+      <div class="skill-list">
+        <div class="skill-row">
+          <span class="skill-name">Bloomberg Terminal</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">BlackRock Aladdin</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Archer IRM</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Git</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="skill-box">
+      <h3>Risk & Markets</h3>
+      <div class="skill-list">
+        <div class="skill-row">
+          <span class="skill-name">Portfolio Analytics</span>
+          <span class="skill-level">Expert</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Model Validation</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Liquidity Management</span>
+          <span class="skill-level">Advanced</span>
+        </div>
+        <div class="skill-row">
+          <span class="skill-name">Portfolio Construction</span>
+          <span class="skill-level">Intermediate</span>
+        </div>
+      </div>
+    </div>
+
   </div>
-  <div class="skills-grid">
-
-    <div class="skill-group">
-      <h4>Tools & Languages</h4>
-      <div class="skill-row"><span class="skill-name">Python</span><span class="skill-badge badge-expert">Expert</span></div>
-      <div class="skill-row"><span class="skill-name">R</span><span class="skill-badge badge-advanced">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">SQL</span><span class="skill-badge badge-advanced">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">Excel</span><span class="skill-badge badge-advanced">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">Linux</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
-    </div>
-
-    <div class="skill-group">
-      <h4>Platforms & Systems</h4>
-      <div class="skill-row"><span class="skill-name">Bloomberg Terminal</span><span class="skill-badge badge-advanced">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">BlackRock Aladdin</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
-      <div class="skill-row"><span class="skill-name">Archer IRM</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
-      <div class="skill-row"><span class="skill-name">Git</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
-    </div>
-
-    <div class="skill-group">
-      <h4>Risk & Markets</h4>
-      <div class="skill-row"><span class="skill-name">Portfolio Analytics</span><span class="skill-badge badge-expert">Expert</span></div>
-      <div class="skill-row"><span class="skill-name">Model Validation</span><span class="skill-badge badge-advanced">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">Liquidity Management</span><span class="skill-badge badge-advanced">Advanced</span></div>
-      <div class="skill-row"><span class="skill-name">Portfolio Construction</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
-    </div>
-
-  </div>
-</div>
-
-<div class="divider"></div>
+</section>
 
 <!-- EDUCATION -->
-<div class="section-wrap" id="education">
-  <div class="section-header">
-    <h2>Education</h2>
-  </div>
-  <div class="edu-row">
-    <div>
-      <h4>M.S., Industrial Engineering</h4>
-      <span class="edu-sub">Arizona State University</span>
+<section class="section" id="education">
+  <h2 class="section-title">EDUCATION</h2>
+  <div class="edu-grid">
+    
+    <div class="edu-box">
+      <h3>M.S., Industrial Engineering</h3>
+      <div class="edu-school">Arizona State University</div>
+      <div class="edu-date">Expected May 2026</div>
     </div>
-    <span class="edu-date">Expected May 2026</span>
-  </div>
-  <div class="edu-row">
-    <div>
-      <h4>B.S., Mathematics</h4>
-      <span class="edu-sub">Arizona State University — GPA: 3.85/4.0</span>
+
+    <div class="edu-box">
+      <h3>B.S., Mathematics</h3>
+      <div class="edu-school">Arizona State University — GPA: 3.85/4.0</div>
+      <div class="edu-date">Dec 2024</div>
     </div>
-    <span class="edu-date">Dec 2024</span>
+
   </div>
-</div>
+</section>
 
 <!-- CONTACT -->
-<div class="contact-wrap" id="contact">
-  <h2>Let's build<br/><span class="green">something.</span></h2>
+<section class="contact" id="contact">
+  <h2 class="contact-title">LET'S <span class="yellow">WORK</span><br/>TOGETHER</h2>
   <p>Open to opportunities at the intersection of quantitative finance and systems engineering.</p>
-  <div class="contact-links">
-    <a href="/cdn-cgi/l/email-protection#96fcf3eca6a3a6a2d6f1fbf7fffab8f5f9fb" class="btn btn-accent">Email Me</a>
-    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn btn-ghost">LinkedIn</a>
-    <a href="#" class="btn btn-ghost">Resume</a>
+  <div class="contact-cta">
+    <a href="mailto:jez0504@gmail.com" class="btn btn-primary">Email Me</a>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn btn-secondary">LinkedIn</a>
+    <a href="#" class="btn btn-secondary">Resume</a>
   </div>
-</div>
+</section>
 
 <!-- FOOTER -->
-<footer>© 2025 Josh Zeiontz. All rights reserved.</footer>
+<footer>
+  © 2025 JOSH ZEIONTZ · ALL RIGHTS RESERVED
+</footer>
 
-<!-- SCROLL REVEAL -->
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach((e, i) => {
-      if (e.isIntersecting) {
-        setTimeout(() => e.target.classList.add('visible'), i * 120);
-        observer.unobserve(e.target);
-      }
-    });
-  }, { thresho
+</body>
+</html>
