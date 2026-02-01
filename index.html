@@ -1,341 +1,619 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Josh Zeiontz — About</title>
-  <meta name="description" content="About Josh Zeiontz — Cross-Asset Investment Risk Analyst & Developer of portfolio risk analytics." />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Josh Zeiontz</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Bebas+Neue&display=swap" rel="stylesheet"/>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-  <style>
-    :root {
-      --bg: #faf9f5;
-      --panel: #ffffff;
-      --text: #1f1f1f;
-      --muted: #555555;
-      --line: #e3e1da;
-      --accent: #7c5cff;
-      --max: 980px;
-      --radius: 16px;
-      --shadow: 0 1px 3px rgba(30,30,30,.08), 0 1px 2px rgba(30,30,30,.04);
-    }
+  :root {
+    --bg:      #f0f0ec;
+    --surface: #ffffff;
+    --border:  #ddddd8;
+    --muted:   #7a7a72;
+    --body:    #3d3d3a;
+    --dark:    #1a1a1a;
+    --accent:  #0dff9e;
+    --accent2: #1a1a1a;
+  }
 
-    * { box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; }
-    body {
-      margin: 0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.55;
-    }
+  html { scroll-behavior: smooth; }
 
-    a { color: inherit; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--body);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
 
-    .wrap {
-      max-width: var(--max);
-      margin: auto;
-      padding: 26px 20px 80px;
-    }
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.2rem 2.5rem;
+    background: rgba(240,240,236,.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    color: var(--dark);
+    text-decoration: none;
+    letter-spacing: 2px;
+  }
+  nav .links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.8px;
+    margin-left: 2rem;
+    transition: color .3s;
+    font-weight: 500;
+  }
+  nav .links a:hover { color: var(--dark); }
 
-    /* Nav */
-    .nav {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
-      padding: 12px 14px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      box-shadow: var(--shadow);
-      position: sticky;
-      top: 14px;
-      z-index: 10;
-    }
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 6rem 2.5rem 3rem;
+    position: relative;
+  }
+  .hero-left { position: relative; z-index: 1; }
+  .hero-label {
+    display: inline-flex; align-items: center; gap: .6rem;
+    font-size: .68rem;
+    text-transform: uppercase;
+    letter-spacing: 2.5px;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 1.2rem;
+    opacity: 0; animation: fadeUp .6s .2s forwards;
+  }
+  .hero-label .tag {
+    background: var(--accent);
+    color: var(--dark);
+    padding: .18rem .5rem;
+    border-radius: 3px;
+    font-size: .6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+  .hero h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 10vw, 8.5rem);
+    color: var(--dark);
+    line-height: .95;
+    letter-spacing: -1px;
+    opacity: 0; animation: fadeUp .7s .3s forwards;
+  }
+  .hero h1 .outline {
+    -webkit-text-stroke: 2px var(--dark);
+    color: transparent;
+  }
+  .hero h1 .green { color: var(--accent); }
+  .hero-sub {
+    margin-top: 1.8rem;
+    max-width: 380px;
+    font-size: .88rem;
+    color: var(--muted);
+    font-weight: 300;
+    line-height: 1.75;
+    opacity: 0; animation: fadeUp .7s .45s forwards;
+  }
+  .hero-cta {
+    margin-top: 2rem;
+    display: flex; gap: .7rem;
+    opacity: 0; animation: fadeUp .7s .6s forwards;
+  }
 
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-weight: 700;
-      font-size: 18px;
-      color: var(--text);
-    }
 
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 50%;
-      background: var(--accent);
-    }
 
-    .links {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
+  /* ─── BUTTONS ─── */
+  .btn {
+    display: inline-block;
+    padding: .7rem 1.7rem;
+    border-radius: 8px;
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: 1.6px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all .25s;
+    cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--dark);
+    color: #fff;
+  }
+  .btn-primary:hover { background: #333; transform: translateY(-2px); }
+  .btn-accent {
+    background: var(--accent);
+    color: var(--dark);
+  }
+  .btn-accent:hover { background: #0beda0; transform: translateY(-2px); }
+  .btn-ghost {
+    background: transparent;
+    color: var(--dark);
+    border: 1.5px solid var(--border);
+  }
+  .btn-ghost:hover { border-color: var(--dark); }
 
-    .chip {
-      padding: 8px 12px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      font-size: 14px;
-      color: var(--muted);
-      transition: 150ms ease;
-    }
-    .chip:hover {
-      color: var(--text);
-      border-color: var(--accent);
-    }
+  /* ─── DIVIDER ─── */
+  .divider {
+    max-width: 980px; margin: 0 auto;
+    height: 1px; background: var(--border);
+  }
 
-    /* Hero */
-    .hero {
-      margin-top: 22px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-      display: grid;
-      grid-template-columns: 160px 1fr;
-      gap: 24px;
-    }
+  /* ─── SECTION COMMONS ─── */
+  .section-wrap { padding: 4rem 2.5rem; max-width: 980px; margin: 0 auto; }
+  .section-header {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 2.2rem;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .section-header h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.2rem);
+    color: var(--dark);
+    letter-spacing: 1px;
+    line-height: 1;
+  }
+  .section-header .section-count {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem;
+    color: var(--accent);
+    line-height: 1;
+    opacity: .6;
+  }
 
-    .avatar {
-      width: 160px;
-      height: 160px;
-      border-radius: var(--radius);
-      overflow: hidden;
-      border: 1px solid var(--line);
-    }
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+  /* ─── EXPERIENCE ─── */
+  .exp-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0 2rem;
+    align-items: start;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--border);
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .5s, transform .5s;
+  }
+  .exp-item.visible { opacity: 1; transform: translateY(0); }
+  .exp-item:last-child { border-bottom: none; }
+  .exp-mid .exp-role {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.15rem;
+    color: var(--dark);
+    letter-spacing: .5px;
+  }
+  .exp-mid .exp-company {
+    font-size: .78rem;
+    color: var(--muted);
+    margin-top: .1rem;
+  }
+  .exp-mid .exp-desc {
+    margin-top: .55rem;
+    font-size: .8rem;
+    color: var(--muted);
+  }
+  .exp-mid .exp-desc li {
+    list-style: none;
+    padding-left: .9rem;
+    position: relative;
+    margin-bottom: .25rem;
+  }
+  .exp-mid .exp-desc li::before {
+    content: '›';
+    position: absolute; left: 0;
+    color: var(--accent);
+    font-weight: 700;
+  }
+  .exp-date {
+    font-size: .7rem;
+    color: var(--muted);
+    white-space: nowrap;
+    font-weight: 500;
+    text-align: right;
+    padding-top: .1rem;
+  }
 
-    h1 {
-      margin: 0 0 8px;
-      font-size: clamp(26px, 3.2vw, 40px);
-      line-height: 1.15;
-    }
+  /* ─── PROJECTS ─── */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 1.8rem;
+    position: relative;
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .5s, transform .5s, border-color .3s, box-shadow .3s;
+  }
+  .project-card.visible { opacity: 1; transform: translateY(0); }
+  .project-card:hover {
+    border-color: var(--accent);
+    box-shadow: 0 4px 24px rgba(13,255,158,.15);
+  }
+  .project-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 3.5rem;
+    color: var(--border);
+    line-height: 1;
+    margin-bottom: .3rem;
+  }
+  .project-tag {
+    font-size: .62rem;
+    text-transform: uppercase;
+    letter-spacing: 1.4px;
+    color: var(--dark);
+    background: var(--accent);
+    display: inline-block;
+    padding: .2rem .5rem;
+    border-radius: 4px;
+    font-weight: 700;
+    margin-bottom: .6rem;
+  }
+  .project-card h3 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem;
+    color: var(--dark);
+    letter-spacing: .5px;
+    margin-bottom: .4rem;
+  }
+  .project-card p {
+    font-size: .78rem;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+  .project-stack {
+    margin-top: .9rem;
+    display: flex; flex-wrap: wrap; gap: .35rem;
+  }
+  .project-stack span {
+    font-size: .65rem;
+    color: var(--muted);
+    background: var(--bg);
+    border: 1px solid var(--border);
+    padding: .18rem .5rem;
+    border-radius: 20px;
+    font-weight: 500;
+  }
 
-    .bio {
-      margin: 0;
-      font-size: 16px;
-      color: var(--muted);
-      max-width: 60ch;
-    }
+  /* ─── SKILLS ─── */
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  .skill-group {
+    opacity: 0; transform: translateY(18px);
+    transition: opacity .5s, transform .5s;
+  }
+  .skill-group.visible { opacity: 1; transform: translateY(0); }
+  .skill-group h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: .95rem;
+    color: var(--dark);
+    letter-spacing: 1.5px;
+    margin-bottom: .8rem;
+    padding-bottom: .5rem;
+    border-bottom: 2px solid var(--dark);
+  }
+  .skill-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: .4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .skill-row:last-child { border-bottom: none; }
+  .skill-name { font-size: .8rem; color: var(--body); font-weight: 500; }
+  .skill-badge {
+    font-size: .6rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: .18rem .5rem;
+    border-radius: 20px;
+    font-weight: 600;
+  }
+  .badge-expert       { background: #d1fae5; color: #065f46; }
+  .badge-advanced     { background: #dbeafe; color: #1e40af; }
+  .badge-intermediate { background: #fef3c7; color: #92400e; }
+  .badge-beginner     { background: #ede9fe; color: #5b21b6; }
 
-    .ctaRow {
-      margin-top: 14px;
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
+  /* ─── EDUCATION ─── */
+  .edu-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap; gap: .4rem;
+  }
+  .edu-row:last-child { border-bottom: none; }
+  .edu-row h4 {
+    font-family: 'Bebas Neue', sans-serif;
+    color: var(--dark);
+    font-size: 1rem;
+    letter-spacing: .5px;
+  }
+  .edu-row .edu-sub { color: var(--muted); font-size: .76rem; }
+  .edu-row .edu-date { color: var(--muted); font-size: .76rem; font-weight: 500; }
 
-    .btn {
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      font-size: 14px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: var(--panel);
-      color: var(--text);
-      transition: 150ms ease;
-    }
-    .btn:hover {
-      border-color: var(--accent);
-    }
+  /* ─── CONTACT ─── */
+  .contact-wrap {
+    margin: 0 2.5rem 2.5rem;
+    background: var(--dark);
+    border-radius: 24px;
+    padding: 4rem 2.5rem;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-wrap::before {
+    content: 'JZ';
+    position: absolute;
+    bottom: -10%; right: -5%;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22rem;
+    color: rgba(255,255,255,.03);
+    pointer-events: none;
+    line-height: 1;
+  }
+  .contact-wrap h2 {
+    position: relative; z-index: 1;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.2rem, 6vw, 3.8rem);
+    color: #fff;
+    letter-spacing: 1px;
+    margin-bottom: .5rem;
+  }
+  .contact-wrap h2 .green { color: var(--accent); }
+  .contact-wrap p {
+    position: relative; z-index: 1;
+    color: rgba(255,255,255,.4);
+    font-size: .82rem;
+    max-width: 400px;
+    margin: 0 auto 1.8rem;
+  }
+  .contact-links { position: relative; z-index: 1; display: flex; justify-content: center; gap: .7rem; flex-wrap: wrap; }
+  .contact-links .btn-ghost { color: rgba(255,255,255,.6); border-color: rgba(255,255,255,.2); }
+  .contact-links .btn-ghost:hover { border-color: #fff; color: #fff; }
 
-    .btn.primary {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: .68rem;
+    color: var(--muted);
+  }
 
-    /* Sections */
-    .section {
-      margin-top: 24px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      padding: 20px;
-    }
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(22px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
 
-    .section h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      color: var(--text);
-    }
-
-    .item {
-      padding: 14px 0;
-      border-top: 1px solid var(--line);
-    }
-    .item:first-of-type { border-top: none; }
-
-    .roleRow {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-
-    .role {
-      font-weight: 700;
-      font-size: 15px;
-      color: var(--text);
-    }
-
-    .meta {
-      font-size: 14px;
-      color: var(--muted);
-      white-space: nowrap;
-    }
-
-    ul {
-      margin: 10px 0 0 18px;
-      color: var(--muted);
-    }
-    li { margin: 6px 0; }
-
-    .grid2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 14px;
-    }
-
-    .mini {
-      background: var(--bg);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 14px;
-    }
-    .mini h3 {
-      margin: 0 0 8px;
-      font-size: 14px;
-      color: var(--text);
-    }
-    .mini p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    @media (max-width: 740px) {
-      .hero {
-        grid-template-columns: 1fr;
-      }
-      .avatar {
-        width: 100%;
-        height: 220px;
-      }
-      .grid2 {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 700px) {
+    nav { padding: 1rem 1.5rem; }
+    nav .links a { margin-left: 1rem; font-size: .68rem; }
+    .hero { grid-template-columns: 1fr; min-height: auto; padding: 5.5rem 1.5rem 2rem; }
+    .section-wrap { padding: 3rem 1.5rem; }
+    .exp-item { grid-template-columns: 30px 1fr; }
+    .exp-date { display: none; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .contact-wrap { margin: 0 1rem 1.5rem; padding: 2.5rem 1.5rem; }
+  }
+</style>
 </head>
-
 <body>
-  <div class="wrap">
-    <header class="nav">
-      <a class="brand" href="/">
-        <span class="dot"></span>
-        <span>Josh Zeiontz</span>
-      </a>
 
-      <nav class="links">
-        <a class="chip" href="/about.html">About</a>
-        <a class="chip" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank">LinkedIn</a>
-        <a class="chip" href="mailto:YOUR.EMAIL@gmail.com">Contact</a>
-      </nav>
-    </header>
-
-    <section class="hero">
-      <div class="avatar">
-        <img src="assets/headshot.jpg" alt="Josh Zeiontz Headshot" />
-      </div>
-
-      <div>
-        <h1>Driven by markets. Built like software.</h1>
-        <p class="bio">I’m a Cross-Asset Investment Risk Analyst at Morgan Stanley Investment Management. I build automated
-          analytics, pipelines, and dashboards that turn complex portfolio data into material investment insights for PMs and leadership.</p>
-        <div class="ctaRow">
-          <a class="btn primary" href="assets/Josh_Zeiontz_Resume.pdf" target="_blank">Download Resume</a>
-          <a class="btn" href="mailto:YOUR.EMAIL@gmail.com">Email</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Experience</h2>
-
-      <div class="item">
-        <div class="roleRow">
-          <div class="role">Cross-Asset Investment Risk Analyst</div>
-          <div class="meta">Morgan Stanley Investment Management</div>
-        </div>
-        <div class="meta">2025 — Present</div>
-        <ul>
-          <li>Engineered automated liquidity, counterparty, and leverage dashboards using Python, SQL, and Linux across 930+ portfolios.</li>
-          <li>Built daily ingestion and reporting pipelines to produce reliable risk and exposure metrics used by PMs and senior leadership.</li>
-          <li>Translated business requirements and regulatory thresholds into robust analytics and monitoring logic.</li>
-        </ul>
-      </div>
-
-      <div class="item">
-        <div class="roleRow">
-          <div class="role">Model Risk Analyst</div>
-          <div class="meta">MUFG — Tempe, AZ</div>
-        </div>
-        <div class="meta">2025</div>
-        <ul>
-          <li>Validated market and risk models; documented methodology, assumptions, limitations, and control tests.</li>
-          <li>Partnered with stakeholders to harden analytics and improve model governance workflows.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Skills</h2>
-      <div class="grid2">
-        <div class="mini">
-          <h3>Engineering</h3>
-          <p>Python · SQL · Linux · Git · Data pipelines · Automation · Reporting</p>
-        </div>
-        <div class="mini">
-          <h3>Risk & Markets</h3>
-          <p>Liquidity · Counterparty · Leverage · Portfolio analytics · Risk dashboards</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section">
-      <h2>Education</h2>
-      <div class="item">
-        <div class="roleRow">
-          <div class="role">M.S., Industrial Engineering (Online)</div>
-          <div class="meta">Arizona State University</div>
-        </div>
-        <div class="meta">Expected 2026</div>
-      </div>
-      <div class="item">
-        <div class="roleRow">
-          <div class="role">B.S., Mathematics</div>
-          <div class="meta">Arizona State University</div>
-        </div>
-      </div>
-    </section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo">Josh Zeiontz</a>
+  <div class="links">
+    <a href="#experience">Experience</a>
+    <a href="#projects">Projects</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
   </div>
-</body>
-</html>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label"><span class="tag">NYC</span> Morgan Stanley · Risk Analyst</div>
+    <h1>Built<br/><span class="outline">for</span><br/><span class="green">risk.</span></h1>
+    <p class="hero-sub">I build automated analytics, pipelines, and dashboards that turn complex portfolio data into material investment insights — at scale.</p>
+    <div class="hero-cta">
+      <a href="#" class="btn btn-primary">Download Resume</a>
+      <a href="#contact" class="btn btn-accent">Get In Touch</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- EXPERIENCE -->
+<div class="section-wrap" id="experience">
+  <div class="section-header">
+    <h2>Experience</h2>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-mid">
+      <div class="exp-role">Cross-Asset Investment Risk Analyst</div>
+      <div class="exp-company">Morgan Stanley — New York, NY</div>
+      <ul class="exp-desc">
+        <li>Developer and owner of automated liquidity, counterparty, and leverage analytics tools built in Python, SQL, and Linux, supporting portfolio monitoring across 930+ multi-asset investment portfolios.</li>
+        <li>Deliver daily portfolio risk, liquidity, and counterparty exposure insights to portfolio managers and senior leadership, supporting allocation, hedging, and funding decisions.</li>
+        <li>Collaborate with investment teams to align portfolio construction and liquidity management with market conditions and regulatory thresholds.</li>
+      </ul>
+    </div>
+    <div class="exp-date">Sept 2025 — Present</div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-mid">
+      <div class="exp-role">Model Risk Analyst</div>
+      <div class="exp-company">MUFG — Tempe, AZ</div>
+      <ul class="exp-desc">
+        <li>Validated market risk models including VaR, interest rate swaps, credit sensitivities, and market data aggregation through benchmarking, backtesting, and collaboration with Market Risk teams.</li>
+        <li>Extracted and analyzed data from Bloomberg using BQL functions to support validation and automate workflows using R and Python.</li>
+        <li>Authored comprehensive model documentation detailing methodology, assumptions, validation results, and regulatory considerations.</li>
+      </ul>
+    </div>
+    <div class="exp-date">Jan 2025 — Sept 2025</div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-mid">
+      <div class="exp-role">Model Risk Summer Analyst</div>
+      <div class="exp-company">MUFG — Tempe, AZ</div>
+      <ul class="exp-desc">
+        <li>Assisted with periodic and scope validations for name screening, transaction, and securities lending models.</li>
+        <li>Scripted challenger models in R including Levenshtein Distance, Soundex, and DCM forecasting for backtesting, benchmarking, and sensitivity analysis.</li>
+        <li>Collaborated with model owners to conduct 25 performance monitoring reports.</li>
+      </ul>
+    </div>
+    <div class="exp-date">June 2024 — Aug 2024</div>
+  </div>
+
+  <div class="exp-item">
+    <div class="exp-mid">
+      <div class="exp-role">Enterprise Risk Management Intern</div>
+      <div class="exp-company">Enterprise Bank and Trust — Phoenix, AZ</div>
+      <ul class="exp-desc">
+        <li>Evaluated the likelihood and potential impact of identified risks throughout 7 departments using decision trees and risk matrices.</li>
+        <li>Prepared reports and presentations for management using Excel, sharing key risk findings, trends, and mitigation strategies.</li>
+      </ul>
+    </div>
+    <div class="exp-date">Aug 2023 — Dec 2023</div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- PROJECTS -->
+<div class="section-wrap" id="projects">
+  <div class="section-header">
+    <h2>Projects</h2>
+  </div>
+  <div class="projects-grid">
+
+    <div class="project-card">
+      <div class="project-num">01</div>
+      <div class="project-tag">Fixed Income</div>
+      <h3>Bond Portfolio Sensitivity Engine</h3>
+      <p>Built custom functions in R for pricing, duration, convexity, and DV01. Applied discounted cash flow methods for portfolio stress testing and risk-return analysis.</p>
+      <div class="project-stack">
+        <span>R</span><span>DCF</span><span>Stress Testing</span><span>Fixed Income</span>
+      </div>
+    </div>
+
+    <div class="project-card">
+      <div class="project-num">02</div>
+      <div class="project-tag">Portfolio Analytics</div>
+      <h3>Portfolio Optimization Dashboard</h3>
+      <p>Designed an interactive tool that calculates efficient frontiers, maximizes Sharpe ratio, and visualizes portfolio allocation, volatility, and performance attribution.</p>
+      <div class="project-stack">
+        <span>R</span><span>Optimization</span><span>Sharpe Ratio</span><span>Visualization</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- SKILLS -->
+<div class="section-wrap" id="skills">
+  <div class="section-header">
+    <h2>Skills</h2>
+  </div>
+  <div class="skills-grid">
+
+    <div class="skill-group">
+      <h4>Tools & Languages</h4>
+      <div class="skill-row"><span class="skill-name">Python</span><span class="skill-badge badge-expert">Expert</span></div>
+      <div class="skill-row"><span class="skill-name">R</span><span class="skill-badge badge-advanced">Advanced</span></div>
+      <div class="skill-row"><span class="skill-name">SQL</span><span class="skill-badge badge-advanced">Advanced</span></div>
+      <div class="skill-row"><span class="skill-name">Excel</span><span class="skill-badge badge-advanced">Advanced</span></div>
+      <div class="skill-row"><span class="skill-name">Linux</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Platforms & Systems</h4>
+      <div class="skill-row"><span class="skill-name">Bloomberg Terminal</span><span class="skill-badge badge-advanced">Advanced</span></div>
+      <div class="skill-row"><span class="skill-name">BlackRock Aladdin</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
+      <div class="skill-row"><span class="skill-name">Archer IRM</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
+      <div class="skill-row"><span class="skill-name">Git</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
+    </div>
+
+    <div class="skill-group">
+      <h4>Risk & Markets</h4>
+      <div class="skill-row"><span class="skill-name">Portfolio Analytics</span><span class="skill-badge badge-expert">Expert</span></div>
+      <div class="skill-row"><span class="skill-name">Model Validation</span><span class="skill-badge badge-advanced">Advanced</span></div>
+      <div class="skill-row"><span class="skill-name">Liquidity Management</span><span class="skill-badge badge-advanced">Advanced</span></div>
+      <div class="skill-row"><span class="skill-name">Portfolio Construction</span><span class="skill-badge badge-intermediate">Intermediate</span></div>
+    </div>
+
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- EDUCATION -->
+<div class="section-wrap" id="education">
+  <div class="section-header">
+    <h2>Education</h2>
+  </div>
+  <div class="edu-row">
+    <div>
+      <h4>M.S., Industrial Engineering</h4>
+      <span class="edu-sub">Arizona State University</span>
+    </div>
+    <span class="edu-date">Expected May 2026</span>
+  </div>
+  <div class="edu-row">
+    <div>
+      <h4>B.S., Mathematics</h4>
+      <span class="edu-sub">Arizona State University — GPA: 3.85/4.0</span>
+    </div>
+    <span class="edu-date">Dec 2024</span>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<div class="contact-wrap" id="contact">
+  <h2>Let's build<br/><span class="green">something.</span></h2>
+  <p>Open to opportunities at the intersection of quantitative finance and systems engineering.</p>
+  <div class="contact-links">
+    <a href="/cdn-cgi/l/email-protection#96fcf3eca6a3a6a2d6f1fbf7fffab8f5f9fb" class="btn btn-accent">Email Me</a>
+    <a href="https://www.linkedin.com/in/YOUR-LINKEDIN" class="btn btn-ghost">LinkedIn</a>
+    <a href="#" class="btn btn-ghost">Resume</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>© 2025 Josh Zeiontz. All rights reserved.</footer>
+
+<!-- SCROLL REVEAL -->
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 120);
+        observer.unobserve(e.target);
+      }
+    });
+  }, { thresho
